@@ -1,6 +1,6 @@
 # Desiccant
 
-![Desiccant](./desiccant.png)
+![Desiccant](./desiccant.svg)
 
 Managing your certificates has never been so easy.
 

@@ -1,0 +1,13 @@
+{
+  "dehydrated":{
+    "ca": "letsencrypt-test",
+    "hook": "hooks/dehydrated-ovh/hook.sh"
+  },
+
+  "ovh":{
+    "endpoint": "ovh-eu",
+    "key": "<MY_OVH_KEY>",
+    "secret": "<MY_OVH_SECRET_KEY>",
+    "consumer_key": "<MY_OVH_CONSUMER_KEY>"
+  }
+}

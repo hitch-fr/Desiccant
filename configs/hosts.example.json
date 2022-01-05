@@ -1,0 +1,48 @@
+{
+  "local": {
+    "outputs": "/etc/desiccant",
+    "name": "localhost_name",
+    "certificates": [
+      "local.json"
+    ]
+  },
+
+  "srv1": {
+    "name": "srv1.example.com",
+    "sync": true,
+    "renew_on_sync": false,
+
+    "cron": {
+      "enabled": true,
+      "user": "root",
+      "frequency": "everyday @ 9"
+    },
+
+    "certificates": [
+      "example.com.json",
+      "another.example.org.json"
+    ],
+
+    "ssh": {
+      "host": "example.com",
+      "port": 22222,
+      "user": "root"
+    },
+
+    "reporter": {
+      "enabled": true
+    }
+
+  },
+
+  "srv2": {
+    "disabled": true,
+    "name": "srv2.example.com",
+    "ssh": {
+      "host": "srv2.example.com",
+      "port": 22222,
+      "user": "root"
+    },
+    "certificates": [ "example.com.json",  "example_2.com.json" ]
+  }
+}

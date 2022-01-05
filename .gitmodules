@@ -1,0 +1,3 @@
+[submodule "libs/hooks/dehydrated-ovh"]
+	path = libs/hooks/dehydrated-ovh
+	url = git@github.com:hitch-fr/dehydrated-ovh.git

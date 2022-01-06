@@ -9,7 +9,7 @@
 
 ## About Desiccant
 
-Make your certificates management a breeze. Desiccant has a comprehensive JSON configuration system that let you effortlessly create, renew or automate your X509 certificates with only pure BASH. If like me, you don't necessarily want to install technologies like snap or python on each of your servers, Desiccant could meet your needs.
+Make your certificates management a breeze. Desiccant has a comprehensive JSON configuration system that let you effortlessly create, renew or automate your X509 certificates with only pure BASH. If like us at hitch.fr, you don't necessarily want to install technologies like snap or python on each of your servers, Desiccant could meet your needs.
 
 Under the hood, Desiccant uses
 
@@ -20,4 +20,4 @@ Under the hood, Desiccant uses
 
 ## Release
 
-Desiccant will be released soon, in fact I have already been using it for months. Nonetheless, I will be committing small parts at a time and while doing so, I will be refactoring, commenting and checking for possible security issues.
+Desiccant will be released soon, in fact at hitch.fr, we already been using it for months. Nonetheless, I will be committing small parts at a time and while doing so, I will be refactoring, commenting and double check for possible security issues.

@@ -1,7 +1,9 @@
 [![Desiccant](./assets/desiccant.svg)](https://hitch.fr)
 
+[![Version](./assets/version.svg)](https://hitch.fr)
 [![Build Status](./assets/build_failed.svg)](https://hitch.fr)
-[![Build Status](./assets/license.svg)](https://hitch.fr)
+[![Stablility Status](./assets/status_unstable.svg)](https://hitch.fr)
+[![AGPL License](./assets/license.svg)](https://hitch.fr)
 
 
 ## Description

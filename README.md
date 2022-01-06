@@ -1,4 +1,8 @@
-![Desiccant](./desiccant.svg)
+[![Desiccant](./assets/desiccant.svg)](https://hitch.fr)
+
+[![Build Status](./assets/build_failed.svg)](https://hitch.fr)
+[![Build Status](./assets/license.svg)](https://hitch.fr)
+
 
 ## Description
 Managing your certificates has never been so easy.

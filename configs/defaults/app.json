@@ -1,0 +1,24 @@
+{
+  "template_engine": "libs/bash-tpl/bash-tpl",
+  "lockfile": ".lock",
+  "libraries": "libs",
+  "configurations": "configs",
+  "templates": "configs/templates",
+  "dehydrated": "dehydrated/dehydrated",
+  "hosts": "configs/hosts.json",
+
+  "logger": {
+    "script": "logger",
+    "directory": "log",
+    "logfile": "log.txt",
+    "tmpfile": "tmp.txt"
+  },
+
+  "reporter": {
+      "enabled": false,
+      "script": "mailer",
+      "desc": "send a report email",
+      "subject": "Automatically generated report"
+  }
+
+}

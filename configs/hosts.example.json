@@ -15,7 +15,7 @@
     "cron": {
       "enabled": true,
       "user": "root",
-      "frequency": "everyday @ 9"
+      "frequency": "everyday @ 8h"
     },
 
     "certificates": [

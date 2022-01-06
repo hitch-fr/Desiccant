@@ -1,10 +1,11 @@
 [![Desiccant](./assets/desiccant.svg)](https://hitch.fr)
 
-[![Version](./assets/version.svg)](https://hitch.fr)
-[![Build Status](./assets/build_failed.svg)](https://hitch.fr)
-[![Stablility Status](./assets/status_unstable.svg)](https://hitch.fr)
-[![AGPL License](./assets/license.svg)](https://hitch.fr)
-
+<p align="center">
+  <a href="https://hitch.fr"><img src="./assets/version.svg" alt="Version"></a>
+  <a href="https://hitch.fr"><img src="./assets/build_failed.svg" alt="Build Status"></a>
+  <a href="https://hitch.fr"><img src="./assets/status_unstable.svg" alt="Latest Stable"></a>
+  <a href="https://hitch.fr"><img src="./assets/license.svg" alt="License"></a>
+</p>
 
 ## Description
 Managing your certificates has never been so easy.

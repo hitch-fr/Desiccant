@@ -7,11 +7,16 @@
   <a href="https://hitch.fr"><img src="./assets/license.svg" alt="License"></a>
 </p>
 
-## Description
-Managing your certificates has never been so easy.
+## About Desiccant
 
-Effortlessly create, renew and automate your X509 certificates with only pure BASH.
-If like me, you dont necessarily want to provision or install on each and every server, technologies like snap or python that come with Certbot, Desiccant might suite your needs.
+Make your certificates management a breeze. Desiccant has a comprehensive JSON configuration system that let you effortlessly create, renew or automate your X509 certificates with only pure BASH. If like me, you don't necessarily want to install technologies like snap or python on each of your servers, Desiccant could meet your needs.
+
+Under the hood, Desiccant uses
+
+- [JQ](https://github.com/stedolan/jq.git) as a JSON Processor
+- [Bash-TPL](https://github.com/TekWizely/bash-tpl.git) as a templating engine
+- [Dehydrated](https://github.com/dehydrated-io/dehydrated.git) as an ACME client
+- [Dehydrated-ovh](https://github.com/hitch-fr/dehydrated-ovh.git) as a Dehydrated hook
 
 ## Release
 

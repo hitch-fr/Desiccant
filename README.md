@@ -21,3 +21,8 @@ Under the hood, Desiccant uses
 ## Release
 
 Desiccant will be released soon, actually we already been using it for months at hitch.fr. Nonetheless, I will be committing small parts at a time and while doing so, I will be refactoring, commenting and double check for possible security issues.
+
+## Hooks
+
+Hooks can be set globally in `configs/certs.json` and can be override on a per certificate basis in `configs/certificates/my_cert.json`.
+To begin with we will only support the [Dehydrated-ovh](https://github.com/hitch-fr/dehydrated-ovh.git) hooks that we wrote but we plan to make it really easy to use any hooks supported by [Dehydrated](https://github.com/dehydrated-io/dehydrated.git) and eventually we will probably insert hooks that dont add any dependencies and that can be configured from Desiccant by environnement variables.

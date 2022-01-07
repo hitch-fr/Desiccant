@@ -20,4 +20,4 @@ Under the hood, Desiccant uses
 
 ## Release
 
-Desiccant will be released soon, in fact at hitch.fr, we already been using it for months. Nonetheless, I will be committing small parts at a time and while doing so, I will be refactoring, commenting and double check for possible security issues.
+Desiccant will be released soon, actually we already been using it for months at hitch.fr. Nonetheless, I will be committing small parts at a time and while doing so, I will be refactoring, commenting and double check for possible security issues.

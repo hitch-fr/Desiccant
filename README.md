@@ -22,7 +22,54 @@ Under the hood, Desiccant uses
 
 Desiccant will be released soon, actually we already been using it for months at hitch.fr. Nonetheless, I will be committing small parts at a time and while doing so, I will be refactoring, commenting and double check for possible security issues.
 
+## Features
+
+Any improvement suggestion is welcome, just open an issue or send an mail at [support@hitch.fr](mailto:support@hitch.fr)
+
+- Easy to use locally
+- Easy to use remotely
+- Configurable email reports
+- Human readable Cron configuration
+
+
 ## Hooks
 
 Hooks can be set globally in `configs/certs.json` and can be override on a per certificate basis in `configs/certificates/my_cert.json`.
 To begin with we will only support the [Dehydrated-ovh](https://github.com/hitch-fr/dehydrated-ovh.git) hooks that we wrote but we plan to make it really easy to use any hooks supported by [Dehydrated](https://github.com/dehydrated-io/dehydrated.git) and eventually we will probably insert hooks that dont add any dependencies and that can be configured from Desiccant by environnement variables.
+
+## Configure
+
+### Email report
+```json
+{
+  "my_host": {
+    "reporter": {
+      "enabled": true
+    }
+  }
+}
+```
+
+### Cron
+```json
+{
+  "my_host": {
+    "cron": {
+      "enabled": true,
+      "frequency": "everyday @ 8"
+    }
+  }
+}
+```
+
+## Usage
+
+### Run locally
+```bash
+$ ./run --renew
+```
+
+### Synchronize
+```bash
+$ ./run --sync
+```

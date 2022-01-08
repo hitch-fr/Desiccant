@@ -1,7 +1,6 @@
 {
   "reporter": {
     "host": "smtp://mailserver.com",
-    "port": 587,
     "user": "server@mailserver.com",
     "password": "YOUR_SMTP_PASSWORD",
     "from": "server@mailserver.com",

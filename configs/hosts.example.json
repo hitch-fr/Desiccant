@@ -1,6 +1,5 @@
 {
   "local": {
-    "outputs": "/etc/desiccant",
     "name": "localhost_name",
     "certificates": [
       "local.json"

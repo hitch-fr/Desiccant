@@ -6,12 +6,16 @@
   "templates": "configs/templates",
   "dehydrated": "dehydrated/dehydrated",
   "hosts": "configs/hosts.json",
+  "outputs": "certs",
 
   "logger": {
+    "level": 1,
     "script": "logger",
     "directory": "log",
     "logfile": "log.txt",
-    "tmpfile": "tmp.txt"
+    "tmpfile": "tmp.txt",
+    "dehydrated_output": "dehydrated.txt",
+    "dehydrated_errors": "dehydrated_errors.txt"
   },
 
   "reporter": {

@@ -10,19 +10,20 @@
 
   "logger": {
     "level": 1,
-    "script": "logger",
     "directory": "log",
     "logfile": "log.txt",
     "tmpfile": "tmp.txt",
     "dehydrated_output": "dehydrated.txt",
-    "dehydrated_errors": "dehydrated_errors.txt"
+    "dehydrated_errors": "dehydrated_errors.txt",
+    "stdout_off": false,
+    "file_off": false
   },
 
   "reporter": {
-      "enabled": false,
-      "script": "mailer",
-      "desc": "send a report email",
-      "subject": "Automatically generated report"
+    "enabled": false,
+    "script": "mailer",
+    "desc": "send a report email",
+    "subject": "Automatically generated report"
   }
 
 }

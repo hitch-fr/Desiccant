@@ -73,3 +73,10 @@ To begin with we will only support the [Dehydrated-ovh](https://github.com/hitch
 ```bash
 ./run --sync
 ```
+
+## Known compatible operating systems and bash version
+
+- Debian buster 10.11 with GNU bash, version 5.0.3
+- Debian bullseye 11.0 with GNU bash, version 5.1.8
+
+> We would be glad to hear about issues on other operating systems or bash versions to possibly extend compatibilities.

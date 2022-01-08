@@ -5,6 +5,6 @@
     "user": "server@mailserver.com",
     "password": "YOUR_SMTP_PASSWORD",
     "from": "server@mailserver.com",
-    "to": "sysadmin@hitch.fr"
+    "to": "sysadmin@example.com"
   }
 }

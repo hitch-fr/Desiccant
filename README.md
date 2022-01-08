@@ -66,12 +66,12 @@ To begin with we will only support the [Dehydrated-ovh](https://github.com/hitch
 
 ### Run locally
 ```bash
-./run --renew
+./run renew
 ```
 
 ### Synchronize
 ```bash
-./run --sync
+./run sync
 ```
 
 ## Known compatible operating systems and bash version

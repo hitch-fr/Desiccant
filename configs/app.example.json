@@ -1,9 +1,19 @@
 {
-  "reporter": {
+
+  "email": {
+    "script": "mailer",
     "host": "smtp://mailserver.com",
     "user": "server@mailserver.com",
     "password": "YOUR_SMTP_PASSWORD",
     "from": "server@mailserver.com",
     "to": "sysadmin@example.com"
+  },
+
+  "sms": {
+    "script": "textme",
+    "url": "https://smsapi.free-mobile.fr/sendmsg",
+    "user": "YOUR_USER_ID",
+    "password": "PASSWORD"
   }
+
 }

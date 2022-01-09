@@ -80,3 +80,18 @@ To begin with we will only support the [Dehydrated-ovh](https://github.com/hitch
 - Debian bullseye 11.0 with GNU bash, version 5.1.8
 
 > We would be glad to hear about issues on other operating systems or bash versions to possibly extend compatibilities.
+
+## Roadmap
+
+### version 0.1
+
+Basically, we'll just try to make Desiccant work well for most use cases and make it easy for anyone to set up, customize and use. Thanks for helping us in all that by opening issues or by sending emails at [support@hitch.fr](mailto:support@hitch.fr)
+
+- [ ] Find and set up pretty decent defaults that suit as many people needs as possible
+- [ ] Identify and correct misconceptions ( we are not security experts )
+- [ ] Identify and patch security issues
+- [ ] Identify scripts weaknesses and improve their performances
+
+### version 0.2
+
+Basically, we will try to improve Desiccant behavior and make it more flexible. the main idea is to make sure that Desiccant knows how to be forgotten most of the time, when everythings goes well, but sends the right information at the right time when something went wrong and a human being should intervene.

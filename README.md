@@ -24,7 +24,7 @@ Desiccant will be released soon, actually we already been using it for months at
 
 ## Features
 
-Any improvement suggestion is welcome, just open an issue or send an mail at [support@hitch.fr](mailto:support@hitch.fr)
+Any improvement suggestion is welcome, just open an issue or send an email at [support@hitch.fr](mailto:support@hitch.fr)
 
 - Easy to use locally
 - Easy to use remotely

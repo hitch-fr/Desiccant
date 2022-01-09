@@ -19,11 +19,21 @@
     "file_off": false
   },
 
-  "reporter": {
+  "reporters": {
+    "common": "email",
+    "critical": "sms"
+  },
+
+  "email": {
     "enabled": false,
-    "script": "mailer",
+    "script": "app/reporters/mailer",
     "desc": "send a report email",
     "subject": "Automatically generated report"
+  },
+
+  "sms": {
+    "script": "app/reporters/textme",
+    "url": "https://smsapi.free-mobile.fr/sendmsg"
   }
 
 }

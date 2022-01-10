@@ -95,3 +95,8 @@ Basically, we'll just try to make Desiccant work well for most use cases and mak
 ### version 0.2
 
 Basically, we will try to improve Desiccant behavior and make it more flexible. the main idea is to make sure that Desiccant knows how to be forgotten most of the time, when everythings goes well, but sends the right information at the right time when something went wrong and a human being should intervene.
+
+- [ ] implement the option `--host $host $cert` for the renew command
+- [ ] add daily cron jobs for particular certificates when renewal fails and expiration is near
+- [ ] send SMS reports when when a cert expiry is soon
+- [ ] when everything is done, bring a coffee to the sysadmins in the break room

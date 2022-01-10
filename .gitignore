@@ -1,6 +1,6 @@
-log
-certs
-configs/app.json
-configs/hosts.json
-configs/certs.json
-configs/certificates
+/log
+/certs
+/configs/app.json
+/configs/hosts.json
+/configs/certs.json
+/configs/certificates

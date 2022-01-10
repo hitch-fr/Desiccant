@@ -42,9 +42,14 @@ To begin with we will only support the [Dehydrated-ovh](https://github.com/hitch
 ### Email report
 ```json
 {
-  "my_host": {
-    "reporter": {
-      "enabled": true
+  "my_server": {
+    "email": {
+      "enabled": true,
+      "host": "smtp://mailserver.com",
+      "user": "server@mailserver.com",
+      "password": "YOUR_SMTP_PASSWORD",
+      "from": "server@mailserver.com",
+      "to": "sysadmin@example.com"
     }
   }
 }
@@ -53,7 +58,7 @@ To begin with we will only support the [Dehydrated-ovh](https://github.com/hitch
 ### Cron
 ```json
 {
-  "my_host": {
+  "my_server": {
     "cron": {
       "enabled": true,
       "frequency": "everyday @ 8"

@@ -9,12 +9,11 @@
   "outputs": "certs",
 
   "logger": {
-    "level": 1,
+    "level": 0,
     "directory": "log",
     "logfile": "log.txt",
-    "tmpfile": "tmp.txt",
+    "tmpfile": "last_run.txt",
     "dehydrated_output": "dehydrated.txt",
-    "dehydrated_errors": "dehydrated_errors.txt",
     "stdout_off": false,
     "file_off": false
   },
@@ -26,13 +25,13 @@
 
   "email": {
     "enabled": false,
-    "script": "app/reporters/mailer",
+    "script": "app/log/send_email",
     "desc": "send a report email",
     "subject": "Automatically generated report"
   },
 
   "sms": {
-    "script": "app/reporters/textme",
+    "script": "app/log/send_sms",
     "url": "https://smsapi.free-mobile.fr/sendmsg"
   }
 

@@ -1,21 +1,24 @@
 {
-  "template_engine": "libs/bash-tpl/bash-tpl",
-  "lockfile": ".lock",
+  "outputs": "certs",
   "libraries": "libs",
+  "lockfile": ".lock",
+  "runfile": ".current_run",
   "configurations": "configs",
+  "hosts": "configs/hosts.json",
   "templates": "configs/templates",
   "dehydrated": "dehydrated/dehydrated",
-  "hosts": "configs/hosts.json",
-  "outputs": "certs",
+  "template_engine": "libs/bash-tpl/bash-tpl",
 
   "logger": {
-    "level": 0,
+    "keep": 5,
+    "level": 1,
     "directory": "log",
-    "logfile": "log.txt",
-    "tmpfile": "last_run.txt",
-    "dehydrated_output": "dehydrated.txt",
-    "stdout_off": false,
-    "file_off": false
+    "stdout": true,
+    "file": true,
+    "dehydrated": {
+      "stdout": true,
+      "file": true
+    }
   },
 
   "reporters": {
@@ -25,7 +28,7 @@
 
   "email": {
     "enabled": false,
-    "script": "app/log/send_email",
+    "script": "app/logger/send_email",
     "desc": "send a report email",
     "subject": "Automatically generated report"
   },

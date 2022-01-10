@@ -29,7 +29,10 @@ FUNCTIONS=$DESICCANT_PWD/functions;
 
 source $FUNCTIONS/utils.sh;
 source $FUNCTIONS/helpers.sh;
-source $FUNCTIONS/logger.sh;
+
+source $APP/logger/log.sh;
+
+# source $FUNCTIONS/logger.sh;
 source $FUNCTIONS/reporter.sh;
 source $FUNCTIONS/openssl.sh;
 source $FUNCTIONS/dehydrated.sh;

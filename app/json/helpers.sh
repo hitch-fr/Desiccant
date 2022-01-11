@@ -40,6 +40,9 @@ function path(){
   fi
 }
 
+# return the value of the given ${1} option
+# from the user app.json file if not null
+# otherwise from the default app.json
 function app(){
   local args="${1}";
 

@@ -66,7 +66,12 @@ function app(){
 
 function hosts(){
   local servers_conf=$( app hosts );
-  keys $DESICCANT_PWD/$servers_conf
+  servers_conf=$( path "$servers_conf" );
+
+  if is_file $user_config
+  then
+    keys $servers_conf;
+  fi
 }
 
 # Append the given path to the working

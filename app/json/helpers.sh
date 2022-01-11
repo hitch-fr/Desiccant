@@ -40,6 +40,9 @@ function path(){
   fi
 }
 
+# return the absolute path of any given relative
+# to the current remote host working directory
+# path ${1} or leave absolute path unchanged
 function remote_path(){
   local working_dir=$( server $server.working_dir );
 

@@ -64,6 +64,9 @@ function app(){
   echo $value;
 }
 
+# return all servers added by the user
+# in the hosts json file from the
+# path set in the app configs
 function hosts(){
   local servers_conf=$( app hosts );
   servers_conf=$( path "$servers_conf" );

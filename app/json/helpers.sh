@@ -39,3 +39,15 @@ function path(){
     [[ ${path::1} == "/" ]] && echo "$path" || echo "$DESICCANT_PWD/$path";
   fi
 }
+
+function remote_path(){
+  local working_dir=$( server $server.working_dir );
+
+  if [[ -z ${1+x} ]]
+  then
+    echo "$working_dir";
+  else
+    local path="${1}";
+    [[ ${path::1} == "/" ]] && echo "$path" || echo "$working_dir/$path";
+  fi
+}

@@ -40,17 +40,18 @@ function path(){
   fi
 }
 
-# return the absolute path of any given relative
-# to the current remote host working directory
-# path ${1} or leave absolute path unchanged
+# Append the given path to the working
+# directory of the given remote host
+# args : hostname ${1}, path ${2}
 function remote_path(){
+  local server="${1}";
   local working_dir=$( server $server.working_dir );
 
-  if [[ -z ${1+x} ]]
+  if [[ -z ${2+x} ]]
   then
     echo "$working_dir";
   else
-    local path="${1}";
+    local path="${2}";
     [[ ${path::1} == "/" ]] && echo "$path" || echo "$working_dir/$path";
   fi
 }

@@ -40,6 +40,27 @@ function path(){
   fi
 }
 
+function app(){
+  local args="${1}";
+
+  local configs="$DESICCANT_PWD/configs";
+  local value="null";
+
+  local user_config=$( path "$configs/app.json" );
+
+  if is_file $user_config
+  then
+    value=$( value $args $user_config );
+  fi
+
+  if is_null $value
+  then
+    local defaults=$( path "$configs/defaults/app.json" );
+    value=$( value $args $defaults );
+  fi
+  echo $value;
+}
+
 # Append the given path to the working
 # directory of the given remote host
 # args : hostname ${1}, path ${2}

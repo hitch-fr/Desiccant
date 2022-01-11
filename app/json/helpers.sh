@@ -64,6 +64,11 @@ function app(){
   echo $value;
 }
 
+function hosts(){
+  local servers_conf=$( app hosts );
+  keys $DESICCANT_PWD/$servers_conf
+}
+
 # Append the given path to the working
 # directory of the given remote host
 # args : hostname ${1}, path ${2}

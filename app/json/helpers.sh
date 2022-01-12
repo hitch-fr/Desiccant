@@ -98,6 +98,22 @@ function server(){
   fi
 }
 
+# Append the given path to the working
+# directory of the given remote host
+# args : hostname ${1}, path ${2}
+function remote_path(){
+  local server="${1}";
+  local working_dir=$( server $server.working_dir );
+
+  if [[ -z ${2+x} ]]
+  then
+    echo "$working_dir";
+  else
+    local path="${2}";
+    [[ ${path::1} == "/" ]] && echo "$path" || echo "$working_dir/$path";
+  fi
+}
+
 # return the value corresponding to the given
 # ${1} args string from the given ${2} conf
 # if not found seek args in the defaults
@@ -127,18 +143,24 @@ function domain(){
   echo $value;
 }
 
-# Append the given path to the working
-# directory of the given remote host
-# args : hostname ${1}, path ${2}
-function remote_path(){
-  local server="${1}";
-  local working_dir=$( server $server.working_dir );
+function outputs(){
+  local outputs="null";
 
-  if [[ -z ${2+x} ]]
+  if [[ ! -z ${1+x} ]]
   then
-    echo "$working_dir";
-  else
-    local path="${2}";
-    [[ ${path::1} == "/" ]] && echo "$path" || echo "$working_dir/$path";
+    local fqdn_config="${1}";
+    outputs=$( domain outputs $fqdn_config );
   fi
+
+  if [[ $outputs == "null" ]]
+  then
+    outputs=$( app outputs );
+  fi
+
+  if [[ $outputs == "null" ]]
+  then
+    outputs="certs";
+  fi
+
+  echo "$outputs";
 }

@@ -177,6 +177,9 @@ success(){
   files_log "SUCCESS : $msg";
 }
 
+# prepend to any given ${1} message
+# the WARNING mension add colors
+# and pass it to log functions
 warning(){
   local msg=$( trim $@ );
 

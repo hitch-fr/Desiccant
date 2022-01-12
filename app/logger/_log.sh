@@ -165,6 +165,9 @@ info(){
   fi
 }
 
+# prepend to any given ${1} message
+# the SUCCESS mension add colors
+# and pass it to log functions
 success(){
   local msg=$( trim $@ );
 

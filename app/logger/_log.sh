@@ -24,7 +24,7 @@ logger_init(){
 # remove any log level tag found at the beginning
 # of a message and echo this message out if its
 # log level is lower than the app log config
-check_log_level(){
+log_level_filter(){
   local message="${@}";
   local msg_lvl=0;
   local app_lvl=$( app logger.level );
@@ -144,9 +144,8 @@ log_reset_color(){
   echo `tput -T $TERM sgr0`;
 }
 
-
 info(){
-  local msg=$( check_log_level $1 );
+  local msg=$( log_level_filter $1 );
   local fqdn="";
 
   if [[ ! -z "${2+x}" ]]

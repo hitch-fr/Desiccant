@@ -98,6 +98,9 @@ function server(){
   fi
 }
 
+# return the value corresponding to the given
+# ${1} args string from the given ${2} conf
+# if not found seek args in the defaults
 function domain(){
   local arg="${1}";
   local value="null";

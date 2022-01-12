@@ -195,3 +195,36 @@ unlock(){
   info "Unlocking $name";
   rm -f $lockfile;
 }
+
+# Create a run file that contain a unique
+# identifier for the current run which
+# is based on the time the run start
+set_run(){
+  local name=$( date +%d-%m-%Y_%H-%M-%S );
+  local runfile=$( app runfile );
+  runfile=$( path $runfile );
+
+  info "<% level 2 %> The current run is named $name";
+  touch $runfile;
+  echo $name > $runfile;
+}
+
+# Retrieve the run file created by the
+# set_run helper and return the run
+# unique identifier stored inside
+run_name(){
+  local runfile=$( app runfile );
+  runfile=$( path $runfile );
+  cat $runfile;
+}
+
+# Remove the run file created by the
+# set_run helper and echo out the
+# run unique identifier in logs
+clean_run(){
+  local name=$( run_name );
+  local runfile=$( app runfile );
+  runfile=$( path $runfile );
+  info "<% level 2 %> cleaning run $name";
+  rm -f $runfile;
+}

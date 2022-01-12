@@ -167,3 +167,14 @@ function outputs(){
 
   echo "$outputs";
 }
+
+lock(){
+  local name="desiccant";
+  [[ ! -z ${1+x} ]] && name="${1}";
+
+  local lockfile=$( app lockfile );
+  lockfile=$( path $lockfile );
+
+  info "Locking $name";
+  touch $lockfile;
+}

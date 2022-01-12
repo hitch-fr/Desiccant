@@ -28,7 +28,7 @@
 
   "email": {
     "enabled": false,
-    "script": "app/logger/send_email",
+    "script": "app/send/email",
     "desc": "send a report email",
     "subject": "Automatically generated report"
   },

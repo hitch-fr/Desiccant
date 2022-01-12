@@ -188,3 +188,12 @@ warning(){
   console_log "${orange}WARNING :${reset} $msg";
   files_log "WARNING : $msg";
 }
+
+danger(){
+  local msg=$( trim $@ );
+
+  local red=$( log_color 1 );
+  local reset=$( log_reset_color );
+  console_log "${red}DANGER :${reset} $msg";
+  files_log "DANGER : $msg";
+}

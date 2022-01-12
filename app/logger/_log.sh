@@ -135,3 +135,8 @@ log_color(){
   [[ ! -z ${1+x} ]] && color="${1}";
   echo `tput -T $TERM setaf "${color}"`;
 }
+
+log_reset_color(){
+  [[ -z ${TERM+x} ]] && local TERM="xterm-256color";
+  echo `tput -T $TERM sgr0`;
+}

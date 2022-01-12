@@ -98,6 +98,32 @@ function server(){
   fi
 }
 
+function domain(){
+  local arg="${1}";
+  local value="null";
+  local configs=$( app configurations );
+
+  if [[ ! -z ${2+x} ]]
+  then
+    local fqdn_config="${2}"
+    local value=$( value $arg $fqdn_config );
+  fi
+
+  if [[ $value == "null" ]]
+  then
+    local conf=$( path "$configs/certs.json" );
+    value=$( value $arg $conf );
+  fi
+
+  if [[ $value == "null" ]]
+  then
+    conf=$( path "$configs/defaults/certs.json" );
+    local value=$( value $arg $conf );
+  fi
+
+  echo $value;
+}
+
 # Append the given path to the working
 # directory of the given remote host
 # args : hostname ${1}, path ${2}

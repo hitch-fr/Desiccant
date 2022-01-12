@@ -77,6 +77,9 @@ function hosts(){
   fi
 }
 
+# return the value corresponding to the given
+# "server.args" ${1} string from the conf
+# if not found seek args in defaults
 function server(){
   local arg="${1}";
   local configs=$( app configurations );

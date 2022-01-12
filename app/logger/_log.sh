@@ -176,3 +176,12 @@ success(){
   console_log "${green}SUCCESS :${reset} $msg";
   files_log "SUCCESS : $msg";
 }
+
+warning(){
+  local msg=$( trim $@ );
+
+  local orange=$( log_color 3 );
+  local reset=$( log_reset_color );
+  console_log "${orange}WARNING :${reset} $msg";
+  files_log "WARNING : $msg";
+}

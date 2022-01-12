@@ -136,6 +136,9 @@ log_color(){
   echo `tput -T $TERM setaf "${color}"`;
 }
 
+# set the $TERM environment variable if
+# dont exists and echo the tput sgr0
+# command output that reset colors
 log_reset_color(){
   [[ -z ${TERM+x} ]] && local TERM="xterm-256color";
   echo `tput -T $TERM sgr0`;

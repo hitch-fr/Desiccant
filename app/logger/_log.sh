@@ -164,3 +164,12 @@ info(){
     files_log "INFO : $msg" $fqdn;
   fi
 }
+
+success(){
+  local msg=$( trim $@ );
+
+  local green=$( log_color 2 );
+  local reset=$( log_reset_color );
+  console_log "${green}SUCCESS :${reset} $msg";
+  files_log "SUCCESS : $msg";
+}

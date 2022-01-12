@@ -182,6 +182,9 @@ lock(){
   touch $lockfile;
 }
 
+# Remove the lockfile created by the lock
+# helper, therefore authorize desiccant
+# to execute its main function again
 unlock(){
   local name="desiccant";
   [[ ! -z ${1+x} ]] && name="${1}";

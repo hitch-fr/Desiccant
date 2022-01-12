@@ -181,3 +181,14 @@ lock(){
   info "Locking $name";
   touch $lockfile;
 }
+
+unlock(){
+  local name="desiccant";
+  [[ ! -z ${1+x} ]] && name="${1}";
+  
+  local lockfile=$( app lockfile );
+  lockfile=$( path $lockfile );
+  
+  info "Unlocking $name";
+  rm -f $lockfile;
+}

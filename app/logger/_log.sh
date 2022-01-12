@@ -60,6 +60,9 @@ console_log(){
   fi
 }
 
+# prepend the system time to any given ${1}
+# message and print it to logfile in the
+# logdir or in the ?given ${2} subdir 
 files_log(){
   local message="${1}";
 

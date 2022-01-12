@@ -1,3 +1,6 @@
+# initialize the logger by creating the log
+# dir and the current run log dir and add
+# a subdir if any ${1} subdir is given
 logger_init(){
   local filename="report.txt";
   local logdir=$( app logger.directory );
@@ -16,5 +19,4 @@ logger_init(){
 
   local logfile=$( path $logdir/$filename );
   touch $logfile;
-
 }

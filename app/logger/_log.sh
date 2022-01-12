@@ -144,6 +144,9 @@ log_reset_color(){
   echo `tput -T $TERM sgr0`;
 }
 
+# filter any given $1 log message by level
+# prepend the INFO mension and color it
+# for console_log and files_log calls
 info(){
   local msg=$( log_level_filter $1 );
   local fqdn="";

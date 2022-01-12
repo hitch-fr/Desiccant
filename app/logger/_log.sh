@@ -125,3 +125,10 @@ log_header(){
   printf "$t" >> $tmp;
 
 }
+
+log_color(){
+  [[ -z ${TERM+x} ]] && local TERM="xterm-256color";
+  local color=0;
+  [[ ! -z ${1+x} ]] && color="${1}";
+  echo `tput -T $TERM setaf "${color}"`;
+}

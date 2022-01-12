@@ -91,6 +91,9 @@ files_log(){
   fi
 }
 
+# print out any given ${1} message to both
+# logdir/logfile and the standard output
+# regardless of the app logger config
 log_header(){
   local title="${1}";
 

@@ -45,3 +45,17 @@ check_log_level(){
     echo "$message";
   fi
 }
+
+# prepend the system time to any given ${1}
+# message and print the resulting string
+# to the standard output if app stdout
+console_log(){
+  local message="${1}";
+
+  local stdout_on=$( app logger.stdout );
+  if is $stdout_on
+  then
+    local now="$(date '+%H:%M')";
+    printf "$now $message\n";
+  fi
+}

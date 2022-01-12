@@ -126,6 +126,9 @@ log_header(){
 
 }
 
+# set the $TERM environment variable if
+# dont exists and print the color as
+# the ?given ${1} tput setaf color
 log_color(){
   [[ -z ${TERM+x} ]] && local TERM="xterm-256color";
   local color=0;

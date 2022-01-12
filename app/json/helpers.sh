@@ -71,7 +71,7 @@ function hosts(){
   local servers_conf=$( app hosts );
   servers_conf=$( path "$servers_conf" );
 
-  if is_file $user_config
+  if is_file $servers_conf
   then
     keys $servers_conf;
   fi

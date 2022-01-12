@@ -189,6 +189,9 @@ warning(){
   files_log "WARNING : $msg";
 }
 
+# prepend to any given ${1} message
+# the DANGER mension add the red
+# color and call log functions
 danger(){
   local msg=$( trim $@ );
 

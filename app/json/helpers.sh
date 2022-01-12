@@ -168,6 +168,9 @@ function outputs(){
   echo "$outputs";
 }
 
+# Lock the desiccant execution, when called
+# this helper create a file that prevent
+# any further run of the main function
 lock(){
   local name="desiccant";
   [[ ! -z ${1+x} ]] && name="${1}";

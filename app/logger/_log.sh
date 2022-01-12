@@ -62,7 +62,7 @@ console_log(){
 
 # prepend the system time to any given ${1}
 # message and print it to logfile in the
-# logdir or in the ?given ${2} subdir 
+# logdir or in the ?given ${2} subdir
 files_log(){
   local message="${1}";
 
@@ -201,6 +201,9 @@ danger(){
   files_log "DANGER : $msg";
 }
 
+# prepend a given ${1} message
+# the red colored ERROR tag
+# and pass it for logging
 error(){
   local msg=$( trim $@ );
 

@@ -90,3 +90,35 @@ files_log(){
     fi
   fi
 }
+
+log_header(){
+  local title="${1}";
+
+  local filename="report.txt";
+
+  local logdir=$( app logger.directory );
+  local current_run=$( run_name );
+  logdir+="/$current_run";
+  logdir=$( path $logdir );
+  tmp="$logdir/$filename";
+
+  local title_line="";
+  local half="‾‾‾‾";
+  local spaces="    ";
+  local len=${#1};
+
+  for (( i=0; i<$len; i++ ));
+  do
+    title_line+="‾";
+  done
+  local t;
+  t="\n";
+  t+="${half}${title_line}${half}\n";
+  t+="${spaces}${title}\n";
+  t+="${half}${title_line}${half}\n";
+  t+="\n";
+
+  printf "$t";
+  printf "$t" >> $tmp;
+
+}

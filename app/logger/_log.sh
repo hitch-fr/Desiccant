@@ -200,3 +200,12 @@ danger(){
   console_log "${red}DANGER :${reset} $msg";
   files_log "DANGER : $msg";
 }
+
+error(){
+  local msg=$( trim $@ );
+
+  local red=$( log_color 1 );
+  local reset=$( log_reset_color );
+  console_log "${red}ERROR :${reset} $msg";
+  files_log "ERROR : $msg";
+}

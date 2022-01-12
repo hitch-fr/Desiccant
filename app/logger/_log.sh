@@ -143,3 +143,22 @@ log_reset_color(){
   [[ -z ${TERM+x} ]] && local TERM="xterm-256color";
   echo `tput -T $TERM sgr0`;
 }
+
+
+info(){
+  local msg=$( check_log_level $1 );
+  local fqdn="";
+
+  if [[ ! -z "${2+x}" ]]
+  then
+    fqdn="${2}";
+  fi
+
+  if ! is_null $msg;
+  then
+    local blue=$( log_color 6 );
+    local reset=$( log_reset_color );
+    console_log "${blue}INFO :${reset} $msg";
+    files_log "INFO : $msg" $fqdn;
+  fi
+}

@@ -77,6 +77,24 @@ function hosts(){
   fi
 }
 
+function server(){
+  local arg="${1}";
+  local configs=$( app configurations );
+
+  local conf=$( path "$configs/hosts.json" );
+  local value=$( value $arg $conf );
+
+  if [[ $value != "null" ]]
+  then
+    echo $value;
+  else
+    conf=$( path "$configs/defaults/hosts.json" );
+    # removing the server name key from $arg;
+    arg=${arg#*.};
+    value $arg $conf;
+  fi
+}
+
 # Append the given path to the working
 # directory of the given remote host
 # args : hostname ${1}, path ${2}

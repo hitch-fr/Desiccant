@@ -18,7 +18,7 @@ set -o pipefail
 APP="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd -P )";
 
 # create and export the read only desiccant working directory variable
-readonly DESICCANT_PWD=${APP%/*};
+DESICCANT_PWD=${APP%/*};
 export DESICCANT_PWD;
 
 # create and export the JSON Processor executable variable
@@ -28,9 +28,8 @@ export DESICCANT_JQ="$DESICCANT_PWD/libs/jq-linux64";
 FUNCTIONS=$DESICCANT_PWD/functions;
 
 source $FUNCTIONS/utils.sh;
-source $FUNCTIONS/helpers.sh;
-
-source $APP/logger/log.sh;
+source $APP/json/helpers.sh;
+source $APP/log/functions.sh;
 
 # source $FUNCTIONS/logger.sh;
 source $FUNCTIONS/reporter.sh;

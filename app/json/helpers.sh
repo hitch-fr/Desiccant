@@ -143,6 +143,9 @@ function domain(){
   echo $value;
 }
 
+# return the outputs directory of the ?given
+# ${1} cert config if not found try certs,
+# if not found try app or app defaults
 function outputs(){
   local outputs="null";
 

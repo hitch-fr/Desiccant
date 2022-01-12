@@ -21,6 +21,9 @@ logger_init(){
   touch $logfile;
 }
 
+# remove any log level tag found at the beginning
+# of a message and echo this message out if its
+# log level is lower than the app log config
 check_log_level(){
   local message="${@}";
   local msg_lvl=0;

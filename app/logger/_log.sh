@@ -59,3 +59,31 @@ console_log(){
     printf "$now $message\n";
   fi
 }
+
+files_log(){
+  local message="${1}";
+
+  local logfile_on=$( app logger.file );
+
+  if is $logfile_on
+  then
+    local filename="report.txt";
+
+    local logdir=$( app logger.directory );
+    local current_run=$( run_name );
+    logdir+="/$current_run";
+    logdir=$( path $logdir );
+    local path=$( path "$logdir/$filename" );
+
+    local now="$(date '+%H:%M')";
+    message="$now $message";
+
+    printf "$message\n" >> $path;
+
+    if [[ ! -z "${2+x}" ]]
+    then
+      path=$( path "$logdir/$2/$filename" );
+      printf "$message\n" >> $path;
+    fi
+  fi
+}

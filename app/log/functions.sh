@@ -168,7 +168,7 @@ info(){
 # the SUCCESS mension add colors
 # and pass it to log functions
 success(){
-  local msg=$( trim $@ );
+  local msg=$( trim "$@" );
 
   local green=$( log_color 2 );
   local reset=$( log_reset_color );
@@ -180,7 +180,7 @@ success(){
 # the WARNING mension add colors
 # and pass it to log functions
 warning(){
-  local msg=$( trim $@ );
+  local msg=$( trim "$@" );
 
   local orange=$( log_color 3 );
   local reset=$( log_reset_color );
@@ -192,7 +192,7 @@ warning(){
 # the DANGER mension add the red
 # color and call log functions
 danger(){
-  local msg=$( trim $@ );
+  local msg=$( trim "$@" );
 
   local red=$( log_color 1 );
   local reset=$( log_reset_color );
@@ -204,7 +204,7 @@ danger(){
 # the red colored ERROR tag
 # and pass it for logging
 error(){
-  local msg=$( trim $@ );
+  local msg=$( trim "$@" );
 
   local red=$( log_color 1 );
   local reset=$( log_reset_color );

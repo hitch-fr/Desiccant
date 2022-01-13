@@ -4,3 +4,5 @@
 /configs/hosts.json
 /configs/certs.json
 /configs/certificates
+/configs/dehydrated/accounts
+/configs/dehydrated/chains

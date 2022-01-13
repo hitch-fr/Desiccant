@@ -1,0 +1,5 @@
+SHELL=/bin/bash
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+<% $CRON_FREQUENCY %> <% $CRON_USER %> <% $CRON_COMMAND %>
+
+# this file has to end with an empty line

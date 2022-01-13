@@ -66,3 +66,10 @@ function explode() {
     if [[ "${array[@]}" ]]; then echo "${array[@]}"; else return 1; f
     unset IFS delimiter string
 }
+
+# return the english formatted
+# string that represent the
+# execution date and time
+function now(){
+  LC_ALL=en_UK.utf8 date '+on %A, %B %d, %Y at %H:%M';
+}

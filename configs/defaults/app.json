@@ -34,7 +34,7 @@
   },
 
   "sms": {
-    "script": "app/log/send_sms",
+    "script": "app/send/sms_free-mobile",
     "url": "https://smsapi.free-mobile.fr/sendmsg"
   }
 

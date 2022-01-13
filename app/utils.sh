@@ -79,3 +79,17 @@ function now(){
 function year(){
   date '+%Y';
 }
+
+# take a given number of days ${1}
+# and return the corresponding
+# number of seconds
+function days_in_seconds(){
+  echo $(( "$1" * 86400 ));
+}
+
+# return the corresponding number
+# of days from the given number
+# of seconds ${1}
+function seconds_in_days(){
+  echo $(( "$1" / 86400 ));
+}

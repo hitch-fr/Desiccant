@@ -21,3 +21,15 @@ function is_null() {
     return 1;
   fi
 }
+
+# return zero if the given variable ${1}
+# contains the path of an actual file
+# on the file system, else return 1
+function is_file() {
+  if [[ -f "${1}" ]]
+  then
+    return 0;
+  else
+    return 1;
+  fi
+}

@@ -93,3 +93,12 @@ function days_in_seconds(){
 function seconds_in_days(){
   echo $(( "$1" / 86400 ));
 }
+
+# return the number of days
+# between the given dates
+# strings ${1} and ${2}
+function days_from(){
+  local date_1=$( date -d "$1" '+%s' );
+  local date_2=$( date -d "$2" '+%s' );
+  seconds_in_days "$(( $date_1 - $date_2 ))";
+}

@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+set -Eeuo pipefail
+
+ROOT="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd -P )";
+source "$ROOT/../load.sh";
+unset -v ROOT;
+
+report="${1}";
+reporter=$( app reporters.critical );
+url=$( app $reporter.url );
+user=$( app $reporter.user );
+password=$( app $reporter.password );
+message=$( cat "$report" );
+
+curl --data-urlencode -L -G -d "user=$user&pass=$password&msg=$message" "$url";
+
+unset -v report;
+unset -v reporter;
+unset -v url;
+unset -v user;
+unset -v password;
+unset -v message;

@@ -37,7 +37,7 @@ log_level_filter(){
     [[ $msg_lvl =~ ^[0-9]+$ ]] || msg_lvl=0; 
 
     message=${message#\<\%*\%\>};
-    message=$( trim $message );
+    message=$( trim "$message" );
   fi
 
   if (( $msg_lvl <= $app_lvl ))
@@ -95,7 +95,7 @@ files_log(){
 # logdir/logfile and the standard output
 # regardless of the app logger config
 log_header(){
-  local title="${1}";
+  local title="${@}";
 
   local filename="report.txt";
 
@@ -148,9 +148,8 @@ log_reset_color(){
 # prepend the INFO mension and color it
 # for console_log and files_log calls
 info(){
-  local msg=$( log_level_filter $1 );
+  local msg=$( log_level_filter "$1" );
   local fqdn="";
-
   if [[ ! -z "${2+x}" ]]
   then
     fqdn="${2}";

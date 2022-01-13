@@ -123,3 +123,40 @@ function cron_frequency(){
 
   echo $day;
 }
+
+# take the given ${1} human readable cron string
+# and make an array that contain the frequency
+# (in days) and the execution time (hour min)
+function cron_translate(){
+  local human_freq="${1}";
+  local day="null" hour="null" min="null";
+
+  if [[ $human_freq =~ ^[0-9]+\:[0-9]+$ ]] || [[ $human_freq == "@"* ]]
+  then
+    # only time string hh:mm, @hh:mm or @hh
+    hour=$( cron_hour "${human_freq}" );
+    min=$( cron_min "${human_freq}" );
+
+  elif [[ $human_freq =~ ^[^@]+$ ]] || [[ $human_freq == *"@" ]]
+  then
+    # only days
+    day=$( cron_frequency "${human_freq}" );
+
+  elif [[ $human_freq == *"@"* ]]
+  then
+    local parts=($(explode "@" "${human_freq}"));
+    day_part=${parts[0]};
+    time_part=${parts[1]};
+
+    day=$( cron_frequency "${day_part}" );
+    hour=$( cron_hour "${time_part}" );
+    min=$( cron_min "${time_part}" );
+  fi
+
+  local cron_freq=();
+  cron_freq[0]=$day;
+  cron_freq[1]=$hour;
+  cron_freq[2]=$min;
+
+  echo "${cron_freq[@]}";
+}

@@ -73,3 +73,9 @@ function explode() {
 function now(){
   LC_ALL=en_UK.utf8 date '+on %A, %B %d, %Y at %H:%M';
 }
+
+# return a string that represent
+# the execution year
+function year(){
+  date '+%Y';
+}

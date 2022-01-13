@@ -124,3 +124,23 @@ Available options:
 
 EOF
 }
+
+# redirect the output of any given ${>3} command to the
+# given ${1} logfile or to stdout according to the
+# booleans ${2} fileout and ${3} stdout options
+function redirect_outputs(){
+  local logfile="${1}"; shift;
+  local fileout="${1}"; shift;
+  local stdout="${1}"; shift;
+
+  if is $fileout && is $stdout
+  then
+    $@ 2>&1 | tee -a $logfile;
+  elif is $fileout
+  then
+    $@ &> $logfile;
+  elif is $stdout
+  then
+    $@;
+  fi
+}

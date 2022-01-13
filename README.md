@@ -79,7 +79,7 @@ To begin with we will only support the [Dehydrated-ovh](https://github.com/hitch
 ./run cron
 ```
 
-### Synchronize
+### Synchronize and schedule remotely
 ```bash
 ./run sync
 ```

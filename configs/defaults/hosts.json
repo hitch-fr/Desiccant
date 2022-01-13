@@ -1,0 +1,18 @@
+{
+  "working_dir": "/opt/desiccant",
+  "renew_on_sync": false,
+  "confs": "configs/certificates",
+
+  "cron": {
+    "enabled": false,
+    "user": "root",
+    "script": "run --renew",
+    "frequency": "every week @ 5:00",
+    "template": "cron.template",
+    "filename": "desiccant_renew"
+  },
+
+  "ssh": {
+    "port": 22
+  }
+}

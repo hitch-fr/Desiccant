@@ -45,3 +45,37 @@ function cron_min() {
   fi
   echo $min;
 }
+
+# extract the hours part of any given
+# human readable cron frequency ${1}
+# return 0 if this part is absent
+function cron_hour() {
+  local str="${1}";
+  local hour="null";
+  str=$( substitute '@' '' "${str}" );
+
+  if [[ $str =~ ^[0-9]+\:[0-9]+$ ]]
+  then
+    parts=($(explode ":" "${str}"));
+    hour="${parts[0]}";
+  elif [[ $str =~ ^[0-9]+h[0-9]+$ ]]
+  then
+    parts=($(explode "h" "${str}"));
+    hour="${parts[0]}";
+  elif [[ $str =~ ^[0-9]+[\:h]?$ ]]
+  then
+    str=$( substitute ':' '' "${str}" );
+    str=$( substitute 'h' '' "${str}" );
+    hour=$str;
+  fi
+
+  if [[ $hour != "null" ]]
+  then
+    # base10 to base10 convertion
+    # auto remove heading zeros
+    hour=$((10#$hour));
+    [[ "$hour" -gt "23" ]] && hour=0;
+  fi
+
+  echo $hour;
+}

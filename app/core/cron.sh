@@ -1,6 +1,6 @@
-# return a human readable cron frequency
-# string ${1} lowercased and stripped
-# of extra spaces and underscores
+# return a human readable cron string
+# ${1} lowercased and stripped of
+# extra spaces and underscores
 function cron_sanitize() {
   local human_freq="${1}";
   [[ ${human_freq} == '' ]] && human_freq="null";
@@ -18,9 +18,9 @@ function cron_sanitize() {
   echo "$human_freq";
 }
 
-# extract the minutes part of any given
-# human readable cron frequency ${1}
-# return 0 if this part is absent
+# extract the minutes part of the given ${1}
+# human readable cron string and return it
+# or return 0 if such a part dont exists
 function cron_min() {
   local str="${1}";
   local min="null";
@@ -46,9 +46,9 @@ function cron_min() {
   echo $min;
 }
 
-# extract the hours part of any given
-# human readable cron frequency ${1}
-# return 0 if this part is absent
+# extract the hours part of the given ${1}
+# human readable cron string and return
+# it, return midnight as a default
 function cron_hour() {
   local str="${1}";
   local hour="null";
@@ -78,4 +78,48 @@ function cron_hour() {
   fi
 
   echo $hour;
+}
+
+# extract the frequency part of a given human
+# readable cron string ${1} and return the
+# corresponding number of days
+function cron_frequency(){
+  local str="${1}";
+  local day="null";
+  str=$( substitute '@' '' "${str}" );
+
+  if [[ $str =~ ^everyday+s?+$ ]]
+  then
+    day=1;
+  fi
+
+  if [[ $str =~ ^[0-9]+$ ]]
+  then
+    day="$(( 10#${str} ))";
+  fi
+
+  if [[ $str =~ ^[0-9]+_day+s?+$ ]]
+  then
+    parts=($(explode "_" "${str}"));
+    day="$(( 10#${parts[0]} ))";
+  fi
+
+  if [[ $str =~ ^week+s?+$ ]]
+  then
+    day=7;
+  fi
+
+  if [[ $str =~ ^[0-9]+_week+s?+$ ]]
+  then
+    parts=($(explode "_" "${str}"));
+    day="$(( 10#${parts[0]} * 7 ))";
+  fi
+
+  if [[ $str =~ ^[0-9]+_month+s?+$ ]]
+  then
+    parts=($(explode "_" "${str}"));
+    day="$(( 10#${parts[0]} * 30 ))";
+  fi
+
+  echo $day;
 }

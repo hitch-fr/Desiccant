@@ -160,3 +160,73 @@ function cron_translate(){
 
   echo "${cron_freq[@]}";
 }
+
+# take the human readable cron string from the given ${1} server's
+# configuration, fill the possible blanks with the string in the
+# app defaults and return a well formatted cron frequency line
+function get_cron(){
+  local server="${1}";
+  local day hour min parts;
+  local message="null";
+
+  local human_freq=$( server $server.cron.frequency );
+  local human_freq=$( cron_sanitize "${human_freq}" );
+
+  if [[ $human_freq =~ ^[0-9]+?_?minutes?$ ]] || [[ $human_freq =~ ^[0-9]+?_?mins?$ ]]
+  then
+    parts=($(explode "_" "${human_freq}"));
+    [[ -z "${parts[1]+x}" ]] && min=1 || min=${parts[0]};
+    min="'*'/$(( 10#${min} ))";
+    hour="'*'";
+    day="'*'";
+  elif [[ $human_freq =~ ^[0-9]+?_?hour+s?$ ]]
+  then
+    parts=($(explode "_" "${human_freq}"));
+    [[ -z "${parts[1]+x}" ]] && hour=1 || hour=${parts[0]};
+    min=0;
+    hour="'*'/$(( 10#${hour} ))";
+    day="'*'";
+  else
+    local cron_freq=($( cron_translate $human_freq ));
+
+    day=${cron_freq[0]};
+    hour=${cron_freq[1]};
+    min=${cron_freq[2]};
+
+    [[ $day != "null" ]] && day="'*'/$(( 10#${day} ))";
+  fi
+
+  if [[ $day == "null" ]] || [[ $hour == "null" ]] || [[ $min == "null" ]]
+  then
+    local default_freq=$( value cron.frequency $DESICCANT_PWD/configs/defaults/hosts.json );
+
+    local bad_settings="false";
+
+    [[ $human_freq == *"@"* ]] ||\
+    [[ $human_freq =~ ^[^@]+$ ]] ||\
+    [[ $human_freq == *"@" ]] &&\
+    [[ $day == "null" ]] && bad_settings="true";
+
+    if [[ $bad_settings == "true" ]]
+    then
+      human_freq=($(explode "@" "${human_freq}"));
+      local default_d=($(explode "@" "${default_freq}"));
+      message="Unknown cron frequency ${human_freq[0]}, set to default (${default_d[0]})";
+    fi
+
+    default_freq=$( cron_sanitize "${default_freq}" );
+    local cron_freq=($( cron_translate $default_freq ));
+
+    [[ $day == "null" ]] && day="'*'/$(( 10#${cron_freq[0]} ))";
+    [[ $hour == "null" ]] && hour=${cron_freq[1]};
+    [[ $min == "null" ]] && min=${cron_freq[2]};
+  fi
+
+  local cron_freq=();
+  cron_freq[0]=${day};
+  cron_freq[1]=${hour};
+  cron_freq[2]=${min};
+  cron_freq[3]="${message}";
+
+  echo "${cron_freq[@]}";
+}

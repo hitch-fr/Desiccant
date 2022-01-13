@@ -42,10 +42,16 @@ function trim() {
   shopt -s extglob;
   # Trim leading whitespaces
   string="${string##*( )}";
-  
   # trim trailing whitespaces
   string="${string%%*( )}";
-
   echo "${string}";
   shopt -u extglob;
+}
+
+# return the given string ${3} with every
+# occurence of the searched string ${1}
+# replaced by the replace string ${2}
+function substitute() {
+  local SEARCH="${1}" REPLACE="${2}" STRING="${3}";
+  echo ${STRING//$SEARCH/$REPLACE};
 }

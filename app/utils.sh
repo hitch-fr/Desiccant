@@ -55,3 +55,14 @@ function substitute() {
   local SEARCH="${1}" REPLACE="${2}" STRING="${3}";
   echo ${STRING//$SEARCH/$REPLACE};
 }
+
+# call: array=("$(explode $delimiter $string)")
+# return an array in which each element
+# is a part of the given string ${2}
+# splitted by the ${1} delimiter
+function explode() {
+    local delimiter="${1}" string="${2}"
+    local IFS="${delimiter}"; shift; read -a array <<< "${string}";
+    if [[ "${array[@]}" ]]; then echo "${array[@]}"; else return 1; f
+    unset IFS delimiter string
+}

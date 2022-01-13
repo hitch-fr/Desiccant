@@ -74,6 +74,11 @@ To begin with we will only support the [Dehydrated-ovh](https://github.com/hitch
 ./run renew
 ```
 
+### Schedule locally
+```bash
+./run cron
+```
+
 ### Synchronize
 ```bash
 ./run sync
@@ -92,10 +97,11 @@ To begin with we will only support the [Dehydrated-ovh](https://github.com/hitch
 
 Basically, we'll just try to make Desiccant work well for most use cases and make it easy for anyone to set up, customize and use. Thanks for helping us in all that by opening issues or by sending emails at [support@hitch.fr](mailto:support@hitch.fr)
 
+- [ ] Add the `cron` command
+- [ ] Add the `remote_run` command
 - [ ] Find and set up pretty decent defaults that suit as many people needs as possible
 - [ ] Identify and correct misconceptions ( we are not security experts )
 - [ ] Identify and patch security issues
-- [ ] Identify scripts weaknesses and improve their performances
 
 ### version 0.2
 

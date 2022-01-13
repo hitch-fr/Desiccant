@@ -33,3 +33,19 @@ function is_file() {
     return 1;
   fi
 }
+
+# return any given string ${1}
+# stripped of its leading &
+# trailing whitespaces
+function trim() {
+  local string="${1}";
+  shopt -s extglob;
+  # Trim leading whitespaces
+  string="${string##*( )}";
+  
+  # trim trailing whitespaces
+  string="${string%%*( )}";
+
+  echo "${string}";
+  shopt -u extglob;
+}

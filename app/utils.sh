@@ -63,7 +63,7 @@ function substitute() {
 function explode() {
     local delimiter="${1}" string="${2}"
     local IFS="${delimiter}"; shift; read -a array <<< "${string}";
-    if [[ "${array[@]}" ]]; then echo "${array[@]}"; else return 1; f
+    if [[ "${array[@]}" ]]; then echo "${array[@]}"; else return 1; fi
     unset IFS delimiter string
 }
 

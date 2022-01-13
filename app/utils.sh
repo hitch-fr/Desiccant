@@ -102,3 +102,25 @@ function days_from(){
   local date_2=$( date -d "$2" '+%s' );
   seconds_in_days "$(( $date_1 - $date_2 ))";
 }
+
+# print out a brief description
+# and helps of the desiccant
+# command line interface
+function usage() {
+  cat << EOF # remove the space between << and EOF, this is due to web plugin issue
+Usage: Desiccant/run renew [sync, infos, cron]
+
+Create, renew and automate your HTTPS certificates
+from Let's Encrypt or any other CA
+that uses the ACME protocol. 
+
+Available options:
+
+-h, --help      Print this help and exit (Default)
+--renew         Renew all certificates on the current host
+--sync          Synchronize desiccant files with remote hosts as set up in the conf
+--cron          Add a cron file to the host that currently execute desiccant (if enabled)
+--infos         Get some informations on your configuration
+
+EOF
+}

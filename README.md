@@ -109,5 +109,5 @@ Basically, we will try to improve Desiccant behavior and make it more flexible. 
 
 - [ ] implement the option `--host $host $cert` for the renew command
 - [ ] add daily cron jobs for particular certificates when renewal fails and expiration is near
-- [ ] send SMS reports when when a cert expiry is soon
+- [ ] send SMS reports when a cert expiry is soon
 - [ ] when everything is done, bring a coffee to the sysadmins in the break room

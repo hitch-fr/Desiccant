@@ -4,3 +4,6 @@
 [submodule "libs/dehydrated"]
 	path = libs/dehydrated
 	url = https://github.com/dehydrated-io/dehydrated.git
+[submodule "libs/bash-tpl"]
+	path = libs/bash-tpl
+	url = https://github.com/TekWizely/bash-tpl.git

@@ -1,12 +1,11 @@
 {
   "outputs": "certs",
-  "libraries": "libs",
   "lockfile": ".lock",
   "runfile": ".current_run",
   "configurations": "configs",
-  "hosts": "configs/hosts.json",
+  "hosts": "hosts.json",
   "templates": "configs/templates",
-  "dehydrated": "dehydrated/dehydrated",
+  "dehydrated": "libs/dehydrated/dehydrated",
   "template_engine": "libs/bash-tpl/bash-tpl",
 
   "logger": {

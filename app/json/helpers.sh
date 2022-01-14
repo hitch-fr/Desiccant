@@ -64,27 +64,15 @@ function app(){
   echo $value;
 }
 
-# return all servers added by the user
-# in the hosts json file from the
-# path set in the app configs
-function hosts(){
-  local servers_conf=$( app hosts );
-  servers_conf=$( path "$servers_conf" );
-
-  if is_file $servers_conf
-  then
-    keys $servers_conf;
-  fi
-}
-
 # return the value corresponding to the given
 # "server.args" ${1} string from the conf
 # if not found seek args in defaults
 function server(){
   local arg="${1}";
   local configs=$( app configurations );
+  local conf=$( app hosts );
+  conf=$( path "$configs/$conf" );
 
-  local conf=$( path "$configs/hosts.json" );
   local value=$( value $arg $conf );
 
   if [[ $value != "null" ]]

@@ -4,7 +4,7 @@
     "challenge": "dns-01",
     "config": "configs/dehydrated/default.conf",
     "domains_file": "dehydrated.txt",
-    "hook": "hooks/dehydrated-ovh/hook.sh"
+    "hook": "libs/hooks/dehydrated-ovh/hook.sh"
   },
 
   "ovh":{

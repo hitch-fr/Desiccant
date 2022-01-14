@@ -1,10 +1,4 @@
 #!/usr/bin/env bash
-# Desiccant by Eachtime https://github.com/eachtime
-# Version : 0.1
-# website: https://desiccant.fr
-#
-# This script is licensed under The GNU AFFERO GENERAL PUBLIC LICENSE.
-# Please read the LICENSE file in the project root for more details 
 
 # Bash failsafe
 set -f # disable globbing
@@ -31,11 +25,14 @@ source $APP/core/utils.sh;
 source $APP/json/helpers.sh;
 source $APP/log/functions.sh;
 source $APP/cron/common.sh;
+source $APP/send/reports.sh;
 
-# source $FUNCTIONS/logger.sh;
-source $FUNCTIONS/reporter.sh;
 source $FUNCTIONS/openssl.sh;
 source $FUNCTIONS/dehydrated.sh;
+
+# remote functions
+source $APP/core/remote.sh;
+source $APP/cron/remote.sh;
 source $FUNCTIONS/sync.sh;
 
 # unset temporary variables

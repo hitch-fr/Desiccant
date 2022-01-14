@@ -6,3 +6,4 @@
 /configs/certificates
 /configs/dehydrated/accounts
 /configs/dehydrated/chains
+/libs/busybox-1.35.0

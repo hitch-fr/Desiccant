@@ -3,7 +3,7 @@
   "lockfile": ".lock",
   "runfile": ".current_run",
   "configurations": "configs",
-  "hosts": "configs/hosts.json",
+  "hosts": "hosts.json",
   "templates": "configs/templates",
   "dehydrated": "libs/dehydrated/dehydrated",
   "template_engine": "libs/bash-tpl/bash-tpl",

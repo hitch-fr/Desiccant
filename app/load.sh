@@ -31,7 +31,7 @@ source $APP/core/utils.sh;
 source $APP/json/helpers.sh;
 source $APP/log/functions.sh;
 source $APP/cron/common.sh;
-source $FUNCTIONS/reporter.sh;
+source $APP/send/reports.sh;
 
 source $FUNCTIONS/openssl.sh;
 source $FUNCTIONS/dehydrated.sh;

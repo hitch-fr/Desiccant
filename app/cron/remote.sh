@@ -46,3 +46,14 @@ enable_remote_cron(){
     error "$server : the cron template file does not exists";
   fi
 }
+
+# remove the main desiccant cron
+# file from the given ${1}
+# server file system
+disable_remote_cron(){
+  local server="${1}";
+  local crondir="/etc/cron.d";
+  local filename=$( server $server.cron.filename );
+
+  remote_command $server "rm -f $crondir/$filename";
+}

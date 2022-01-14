@@ -31,11 +31,14 @@ source $APP/core/utils.sh;
 source $APP/json/helpers.sh;
 source $APP/log/functions.sh;
 source $APP/cron/common.sh;
-
-# source $FUNCTIONS/logger.sh;
 source $FUNCTIONS/reporter.sh;
+
 source $FUNCTIONS/openssl.sh;
 source $FUNCTIONS/dehydrated.sh;
+
+# remote functions
+source $APP/core/remote.sh;
+source $APP/cron/remote.sh;
 source $FUNCTIONS/sync.sh;
 
 # unset temporary variables

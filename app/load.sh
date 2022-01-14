@@ -27,7 +27,7 @@ export DESICCANT_JQ="$DESICCANT_PWD/libs/jq-linux64";
 # load desiccant modules ( temporary organization )
 FUNCTIONS=$DESICCANT_PWD/functions;
 
-source $APP/utils.sh;
+source $APP/core/utils.sh;
 source $APP/json/helpers.sh;
 source $APP/log/functions.sh;
 source $APP/cron/common.sh;

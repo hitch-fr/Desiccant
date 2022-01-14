@@ -1,10 +1,4 @@
 #!/usr/bin/env bash
-# Desiccant by Eachtime https://github.com/eachtime
-# Version : 0.1
-# website: https://desiccant.fr
-#
-# This script is licensed under The GNU AFFERO GENERAL PUBLIC LICENSE.
-# Please read the LICENSE file in the project root for more details 
 
 # Bash failsafe
 set -f # disable globbing

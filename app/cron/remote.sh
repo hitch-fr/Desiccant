@@ -57,3 +57,18 @@ disable_remote_cron(){
 
   remote_command $server "rm -f $crondir/$filename";
 }
+
+# create or remove the cron file of
+# the given ${1} server according
+# to its cron.enabled option
+remote_cronfile(){
+  local server="${1}";
+
+  local cron_enabled=$( server $server.cron.enabled );
+  if is $cron_enabled
+  then
+    enable_remote_cron $server;
+  else
+    disable_remote_cron $server;
+  fi
+}

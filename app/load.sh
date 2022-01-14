@@ -30,7 +30,7 @@ FUNCTIONS=$DESICCANT_PWD/functions;
 source $APP/utils.sh;
 source $APP/json/helpers.sh;
 source $APP/log/functions.sh;
-source $APP/core/cron.sh;
+source $APP/cron/common.sh;
 
 # source $FUNCTIONS/logger.sh;
 source $FUNCTIONS/reporter.sh;

@@ -3,14 +3,14 @@
   "lockfile": ".lock",
   "runfile": ".current_run",
   "configurations": "configs",
-  "hosts": "hosts.json",
+  "hosts": "configs/hosts.json",
   "templates": "configs/templates",
   "dehydrated": "libs/dehydrated/dehydrated",
   "template_engine": "libs/bash-tpl/bash-tpl",
 
   "logger": {
     "keep": 5,
-    "level": 1,
+    "level": 0,
     "directory": "log",
     "stdout": true,
     "file": true,

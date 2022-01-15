@@ -69,9 +69,8 @@ function app(){
 # if not found seek args in defaults
 function server(){
   local arg="${1}";
-  local configs=$( app configurations );
   local conf=$( app hosts );
-  conf=$( path "$configs/$conf" );
+  conf=$( path "$conf" );
 
   local value=$( value $arg $conf );
 
@@ -79,7 +78,7 @@ function server(){
   then
     echo $value;
   else
-    conf=$( path "$configs/defaults/hosts.json" );
+    conf=$( path "configs/defaults/hosts.json" );
     # removing the server name key from $arg;
     arg=${arg#*.};
     value $arg $conf;

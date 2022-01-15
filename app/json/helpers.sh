@@ -203,7 +203,13 @@ set_run(){
 run_name(){
   local runfile=$( app runfile );
   runfile=$( path $runfile );
-  cat $runfile;
+  
+  if is_file $runfile
+  then
+    cat $runfile;
+  fi
+
+  return 1;
 }
 
 # Remove the run file created by the

@@ -3,7 +3,7 @@
 /configs/app.json
 /configs/hosts.json
 /configs/certs.json
-/configs/certificates
+/configs/certificates/*.json
 /configs/dehydrated/accounts
 /configs/dehydrated/chains
 /libs/busybox-1.35.0

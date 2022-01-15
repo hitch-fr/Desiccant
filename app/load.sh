@@ -23,6 +23,7 @@ FUNCTIONS=$DESICCANT_PWD/functions;
 
 source $APP/core/utils.sh;
 source $APP/json/helpers.sh;
+source $APP/json/checkers.sh;
 source $APP/log/functions.sh;
 source $APP/cron/common.sh;
 source $APP/send/reports.sh;

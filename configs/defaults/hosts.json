@@ -2,6 +2,7 @@
   "working_dir": "/opt/desiccant",
   "renew_on_sync": false,
   "confs": "configs/certificates",
+  "disabled": false,
 
   "cron": {
     "enabled": false,

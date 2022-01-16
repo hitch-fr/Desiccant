@@ -68,13 +68,13 @@ function check_hosts_requirements(){
   for host in $hosts
   do
     local name_is_null_msg="the value $host.name should be the name printed by the hostname command on the computer in which you intend to execute it";
-    local certs_is_null_msg="the host $host should have a field 'certificates' that reference your certificates configuration files";
+    local certs_is_null_msg="the host $host should have a field 'certificates' that reference your certificates configuration files in an array";
 
-    check_host_field_nullity $host 'name' "$name_is_null_msg";
-    check_host_field_nullity $host 'certificates' "$certs_is_null_msg";
+    host_has_field $host 'name' "$name_is_null_msg";
+    host_has_field $host 'certificates' "$certs_is_null_msg";
 
-    check_host_field_type $conf $host 'name' 'string';
-    check_host_field_type $conf $host 'certificates' 'array';
+    host_field_type $conf $host 'name' 'string';
+    host_field_type $conf $host 'certificates' 'array';
   done
 }
 # maybe check for unknown keys?
@@ -83,7 +83,7 @@ function check_hosts_requirements(){
 # each host configuration #
 ###########################
 
-function check_host_field_nullity(){
+function host_has_field(){
   local host="${1}" field="${2}";
 
   local message="the host $host should have a field $field";
@@ -108,7 +108,7 @@ function check_host_field_nullity(){
   fi
 }
 
-function check_host_field_type(){
+function host_field_type(){
   local conf="${1}" host="${2}" field="${3}" datatype="${4}";
 
   datatype=$( echo "${datatype}" | tr '[:upper:]' '[:lower:]' );

@@ -59,12 +59,52 @@ function json_is_not_empty(){
 # ✓ check hosts.json presence
 # ✓ jq can read the file
 # ✓ hosts conf have at least one host
+# hosts has required keys
 
+function check_hosts_requirements(){
+  local conf="${1}";
+  local filename=$( basename $conf );
+  local hosts=$( keys $conf );
+
+  for host in $hosts
+  do
+    check_host_field_nullity $host 'name' "the host $host should have the name of the computer in which you intend to execute it";
+
+    check_host_field_nullity $host 'certificates' "the host $host should have a field 'certificates' that reference your certificates configuration files";
+    
+    # check_host_name $host $disabled "the host $host should have the name of the computer in which you intend to execute it";
+    # check_host_certificates $host $disabled;
+  done
+}
 # maybe check for unknown keys?
 
 ###########################
 # each host configuration #
 ###########################
+
+function check_host_field_nullity(){
+  local host="${1}" field="${2}";
+
+  local message="the host $host should have a field $field";
+  if [[ ! -z ${3+x} ]]
+  then
+    message="${3}";
+  fi
+
+  local field_value=$( server $host.$field );
+  if is_null $field_value
+  then
+    local disabled=$( server $host.disabled );
+    if is $disabled
+    then
+      info "<% level 1 %> no $field found in $host configuration";
+      info "<% level 1 %> $message";
+    else
+      error "no $field found in $host configuration";
+      info "<% level 0 %> $message";
+    fi
+  fi
+}
 
 # check the email configuration if email enabled
 # check the cron templates presence if cron enabled
@@ -73,13 +113,16 @@ function json_is_not_empty(){
 ########################
 # certs configurations #
 ########################
+function check_certificate_requirement(){
+  local host="${1}" cert_conf="${2}";
+  local disabled=$( server $host.disabled );
 
+}
 # check config files presence
 # check fqdn values
 # check hooks configurations
 
-function config_is_valid() {
-  log_header "Configuration check";
+function hosts_check(){
   local servers_conf=$( app hosts );
   servers_conf=$( path "$servers_conf" );
   info "<% level 3 %> checking hosts configuration";
@@ -88,6 +131,13 @@ function config_is_valid() {
   conf_exists $servers_conf && \
   json_is_valid $servers_conf && \
   json_is_not_empty $servers_conf && \
+  check_hosts_requirements $servers_conf && \
+  return 0;
+}
+
+function config_is_valid() {
+  log_header "Configuration check";
+  hosts_check && \
   info "configuration ok" && \
   return 0;
 }

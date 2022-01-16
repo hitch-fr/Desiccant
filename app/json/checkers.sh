@@ -63,17 +63,18 @@ function json_is_not_empty(){
 
 function check_hosts_requirements(){
   local conf="${1}";
-  local filename=$( basename $conf );
   local hosts=$( keys $conf );
 
   for host in $hosts
   do
-    check_host_field_nullity $host 'name' "the host $host should have the name of the computer in which you intend to execute it";
+    local name_is_null_msg="the value $host.name should be the name printed by the hostname command on the computer in which you intend to execute it";
+    local certs_is_null_msg="the host $host should have a field 'certificates' that reference your certificates configuration files";
 
-    check_host_field_nullity $host 'certificates' "the host $host should have a field 'certificates' that reference your certificates configuration files";
-    
-    # check_host_name $host $disabled "the host $host should have the name of the computer in which you intend to execute it";
-    # check_host_certificates $host $disabled;
+    check_host_field_nullity $host 'name' "$name_is_null_msg";
+    check_host_field_nullity $host 'certificates' "$certs_is_null_msg";
+
+    check_host_field_type $conf $host 'name' 'string';
+    check_host_field_type $conf $host 'certificates' 'array';
   done
 }
 # maybe check for unknown keys?
@@ -101,7 +102,32 @@ function check_host_field_nullity(){
       info "<% level 1 %> $message";
     else
       error "no $field found in $host configuration";
+      warning "the renewal will not run on the host $host";
       info "<% level 0 %> $message";
+    fi
+  fi
+}
+
+function check_host_field_type(){
+  local conf="${1}" host="${2}" field="${3}" datatype="${4}";
+
+  datatype=$( echo "${datatype}" | tr '[:upper:]' '[:lower:]' );
+
+  local value=$( $DESICCANT_JQ ."$host.$field" $conf );
+  current_type=$( printf "${value}" | $DESICCANT_JQ 'type'| tr -d '"' );
+  
+  if [[ $current_type != $datatype ]]
+  then
+    local disabled=$( server $host.disabled );
+    value=$( echo $value );
+    if is $disabled
+    then
+      info "<% level 1 %> the field $field should be of type $datatype";
+      info "<% level 1 %> $host.$field: $value is currently of type $current_type";
+    else
+      error "bad value type of the field $field which should be of type $datatype";
+      warning "the renewal will not run on the host $host";
+      info "<% level 0 %> $host.$field: $value is currently of type $current_type";
     fi
   fi
 }

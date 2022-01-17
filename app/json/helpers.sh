@@ -27,6 +27,11 @@ function keys(){
   $DESICCANT_JQ "${args} keys_unsorted" $configuration_file | tr -d '[],"';
 }
 
+function update(){
+  local field="${1}" value="${2}" json="${3}";
+  echo "$( $DESICCANT_JQ --arg value "$value" ."$field"' = $value' $json )" > $json;
+}
+
 # return the absolute path of any given relative
 # to Desiccant root path ${1} or leave any
 # given absolute path ${1} unchanged
@@ -191,7 +196,7 @@ set_run(){
   local runfile=$( app runfile );
   runfile=$( path $runfile );
 
-  info "<% level 2 %> The current run is named $name";
+  # info "<% level 2 %> The current run is named $name";
   touch $runfile;
   echo $name > $runfile;
 }

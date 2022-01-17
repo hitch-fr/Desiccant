@@ -29,12 +29,15 @@ source $APP/cron/common.sh;
 source $APP/send/reports.sh;
 
 source $FUNCTIONS/openssl.sh;
+source $APP/core/openssl.sh;
 source $FUNCTIONS/dehydrated.sh;
+source $APP/core/dehydrated.sh;
 
 # remote functions
 source $APP/core/remote.sh;
 source $APP/cron/remote.sh;
 source $FUNCTIONS/sync.sh;
+source $APP/core/sync.sh;
 
 # unset temporary variables
 unset -v FUNCTIONS;

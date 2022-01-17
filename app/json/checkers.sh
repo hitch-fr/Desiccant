@@ -79,6 +79,7 @@ function check_each_host_requirements(){
 
   for host in $hosts
   do
+    info "checking $host configuration";
     check_host_requirements $host $conf;
   done
 }
@@ -92,10 +93,10 @@ function check_host_requirements(){
   local name_is_null_msg="the value $host.name should be the name printed by the hostname command on the computer in which you intend to execute it";
   local certs_is_null_msg="the host $host should have a field 'certificates' that reference your certificates configuration files in an array";
 
-  host_has_field $host 'name' "$name_is_null_msg";
-  host_has_field $host 'certificates' "$certs_is_null_msg";
-  check_field_type $conf $host 'name' 'string';
-  check_field_type $conf $host 'certificates' 'array';
+  host_has_field $host 'name' "$name_is_null_msg" && \
+  check_field_type $conf $host 'name' 'string' && \
+  host_has_field $host 'certificates' "$certs_is_null_msg" && \
+  check_field_type $conf $host 'certificates' 'array' && \
   check_certificates $conf $host;
 }
 
@@ -158,9 +159,24 @@ function check_field_type(){
 function check_certificates(){
   local conf="${1}" host="${2}";
   local disabled=$( server $host.disabled );
+  local certs=$( server $host.certificates );
+
+  for cert in $certs
+  do
+    check_cert $host $cert;
+  done
 
 }
+function check_cert(){
+  local host="${1}" conf="${2}";
+
+  local confs=$( server $host.confs );
+  local path=$( path "$confs/$conf" );
+
+  # conf_exists $path;
+}
 # check config files presence
+
 # check fqdn values
 # check hooks configurations
 

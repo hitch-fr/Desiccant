@@ -30,7 +30,6 @@ source $APP/send/reports.sh;
 
 source $FUNCTIONS/openssl.sh;
 source $APP/core/openssl.sh;
-source $FUNCTIONS/dehydrated.sh;
 source $APP/core/dehydrated.sh;
 
 # remote functions

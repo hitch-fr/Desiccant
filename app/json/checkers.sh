@@ -61,12 +61,11 @@ function json_is_not_empty(){
 # ✓ hosts conf have at least one host
 # ✓ hosts conf have required keys
 # maybe check for unknown keys?
-function hosts_check(){
+function check_hosts(){
   local servers_conf=$( app hosts );
   servers_conf=$( path "$servers_conf" );
   info "<% level 3 %> checking hosts configuration";
   info "<% level 5 %> $servers_conf";
-
   conf_exists $servers_conf && \
   json_is_valid $servers_conf && \
   json_is_not_empty $servers_conf && \
@@ -168,7 +167,7 @@ function check_certificates(){
 
 function config_is_valid() {
   log_header "Configuration check";
-  hosts_check && \
+  check_hosts && \
   info "configuration ok" && \
   return 0;
 }

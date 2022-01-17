@@ -148,6 +148,7 @@ log_reset_color(){
 # prepend the INFO mension and color it
 # for console_log and files_log calls
 info(){
+  msg="${1^}";
   local msg=$( log_level_filter "$1" );
   local fqdn="";
   if [[ ! -z "${2+x}" ]]
@@ -169,6 +170,7 @@ info(){
 # and pass it to log functions
 success(){
   local msg=$( trim "$@" );
+  msg="${msg^}";
 
   local green=$( log_color 2 );
   local reset=$( log_reset_color );
@@ -181,6 +183,7 @@ success(){
 # and pass it to log functions
 warning(){
   local msg=$( trim "$@" );
+  msg="${msg^}";
 
   local orange=$( log_color 3 );
   local reset=$( log_reset_color );
@@ -193,6 +196,7 @@ warning(){
 # color and call log functions
 danger(){
   local msg=$( trim "$@" );
+  msg="${msg^}";
 
   local red=$( log_color 1 );
   local reset=$( log_reset_color );
@@ -205,6 +209,7 @@ danger(){
 # and pass it for logging
 error(){
   local msg=$( trim "$@" );
+  msg="${msg^}";
 
   local red=$( log_color 1 );
   local reset=$( log_reset_color );

@@ -22,6 +22,6 @@ common_report(){
     exec_reporter=$( path $exec_reporter );
     $exec_reporter "$content_path";
   else
-    info "${common_reporter^} reports are disabled";
+    info "$common_reporter reports are disabled";
   fi
 }

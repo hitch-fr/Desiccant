@@ -113,23 +113,27 @@ function domain(){
   local arg="${1}";
   local value="null";
   local configs=$( app configurations );
+  local conf="";
 
   if [[ ! -z ${2+x} ]]
   then
-    local fqdn_config="${2}"
-    local value=$( value $arg $fqdn_config );
-  fi
-
-  if [[ $value == "null" ]]
-  then
-    local conf=$( path "$configs/certs.json" );
+    local conf="${2}"
     value=$( value $arg $conf );
   fi
 
   if [[ $value == "null" ]]
   then
+    conf=$( path "$configs/certs.json" );
+    if is_file $conf
+    then
+      value=$( value $arg $conf );
+    fi
+  fi
+
+  if [[ $value == "null" ]]
+  then
     conf=$( path "$configs/defaults/certs.json" );
-    local value=$( value $arg $conf );
+    value=$( value $arg $conf );
   fi
 
   echo $value;

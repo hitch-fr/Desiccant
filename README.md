@@ -18,9 +18,18 @@ Under the hood, Desiccant uses
 - [Dehydrated](https://github.com/dehydrated-io/dehydrated.git) as an ACME client
 - [Dehydrated-ovh](https://github.com/hitch-fr/dehydrated-ovh.git) as a Dehydrated hook
 
-## Release
+## Installation
 
-Desiccant will be released soon, actually we already been using it for months at hitch.fr. Nonetheless, we will be committing small parts at a time and while doing so, we will be refactoring, commenting and double check for possible security issues.
+```bash
+git clone --recursive https://github.com/hitch-fr/Desiccant.git
+```
+
+## Update
+
+```bash
+git pull
+git submodule update
+```
 
 ## Features
 

@@ -2,7 +2,7 @@
 
 <p align="center">
   <a href="https://hitch.fr"><img src="./assets/version.svg" alt="Version"></a>
-  <a href="https://hitch.fr"><img src="./assets/build_failed.svg" alt="Build Status"></a>
+  <a href="https://hitch.fr"><img src="./assets/build_passing.svg" alt="Build Status"></a>
   <a href="https://hitch.fr"><img src="./assets/status_unstable.svg" alt="Latest Stable"></a>
   <a href="https://hitch.fr"><img src="./assets/license.svg" alt="License"></a>
 </p>

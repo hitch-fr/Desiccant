@@ -82,7 +82,7 @@ The only required values are `name` and `certificates`. The `name` should be the
 
 ### Certificates configuration
 
-The only required value is the fully qualified domain name `fqdn` and your registrar credentials can be added globally in the `configs/certs.json` file
+The only required value is the fully qualified domain name `fqdn`. Your registrar credentials can be added globally in the `configs/certs.json` file like any other certificate related configuration.
 
 ```json
 {

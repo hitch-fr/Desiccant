@@ -68,6 +68,11 @@ function next_main(){
       renew_all;
     fi
 
+    if is $DESICCANT_CRON
+    then
+      info "the cron command does not exist yet";
+    fi
+
     if is $DESICCANT_SYNC
     then
       sync_all;
@@ -88,6 +93,11 @@ function main(){
   if is $DESICCANT_RENEW
   then
     renew_all;
+  fi
+
+  if is $DESICCANT_CRON
+  then
+    info "the cron command does not exist yet";
   fi
 
   if is $DESICCANT_SYNC

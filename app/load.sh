@@ -18,6 +18,7 @@ export DESICCANT_PWD;
 # create and export the JSON Processor executable variable
 export DESICCANT_JQ="$DESICCANT_PWD/libs/jq-linux64";
 
+# app utilities
 source $APP/core/utils.sh;
 source $APP/json/helpers.sh;
 source $APP/json/checkers.sh;
@@ -25,13 +26,16 @@ source $APP/log/functions.sh;
 source $APP/cron/common.sh;
 source $APP/send/reports.sh;
 
+# core functions
 source $APP/core/openssl.sh;
 source $APP/core/dehydrated.sh;
-
 # remote functions
 source $APP/core/remote.sh;
 source $APP/cron/remote.sh;
 source $APP/core/sync.sh;
+
+# main commands
+source $APP/commands.sh;
 
 # unset temporary variables
 unset -v APP;

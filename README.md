@@ -80,7 +80,34 @@ The only required values are `name` and `certificates`. The `name` should be the
 }
 ```
 
-### Email report
+### Certificates configuration
+
+The only required value is the fully qualified domain name `fqdn` and your registrar credentials can be added globally in the `configs/certs.json` file
+
+```json
+{
+  "fqdn": "example.com",
+
+  "aliases": [
+    "example.com",
+    "any.subdomain.example.com",
+    "*.example.com"
+  ],
+
+  "ovh":{
+    "key": "<MY_OVH_KEY>",
+    "secret": "<MY_OVH_SECRET_KEY>",
+    "consumer_key": "<MY_OVH_CONSUMER_KEY>"
+  }
+}
+```
+
+### Hooks
+
+Hooks can be set globally in `configs/certs.json` and can be override on a per certificate basis in `configs/certificates/my_cert.json`.
+To begin with we will only support the [Dehydrated-ovh](https://github.com/hitch-fr/dehydrated-ovh.git) hooks that we wrote but we plan to make it really easy to use any hooks supported by [Dehydrated](https://github.com/dehydrated-io/dehydrated.git) and eventually we will probably insert hooks that dont add any dependencies and that can be configured from Desiccant by environnement variables.
+
+### Email reports
 ```json
 {
   "my_server": {
@@ -107,11 +134,6 @@ The only required values are `name` and `certificates`. The `name` should be the
   }
 }
 ```
-
-### Hooks
-
-Hooks can be set globally in `configs/certs.json` and can be override on a per certificate basis in `configs/certificates/my_cert.json`.
-To begin with we will only support the [Dehydrated-ovh](https://github.com/hitch-fr/dehydrated-ovh.git) hooks that we wrote but we plan to make it really easy to use any hooks supported by [Dehydrated](https://github.com/dehydrated-io/dehydrated.git) and eventually we will probably insert hooks that dont add any dependencies and that can be configured from Desiccant by environnement variables.
 
 ## Usage
 

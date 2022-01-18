@@ -1,0 +1,105 @@
+#!/usr/bin/env bash
+# Desiccant by Eachtime https://github.com/eachtime
+# Version : 0.1
+# website: https://desiccant.fr
+#
+# This script is licensed under The GNU AFFERO GENERAL PUBLIC LICENSE.
+# Please read the LICENSE file in the project root for more details
+
+# set -Eeuo pipefail
+ROOT="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd -P )";
+source "$ROOT/app/load.sh";
+unset -v ROOT;
+
+# options
+DESICCANT_SYNC="false";
+DESICCANT_RENEW="false";
+DESICCANT_INFOS="false";
+DESICCANT_CRON="false";
+
+if [[ -z ${1+x} ]]
+then
+  usage $(basename "${BASH_SOURCE[0]}");
+  exit;
+fi
+
+for arg in "$@"
+do
+  if [ $arg == "--help" ] || [ $arg == "-h" ]
+  then
+    usage $(basename "${BASH_SOURCE[0]}");
+    exit;
+  fi
+done
+
+for arg in "$@"
+do
+
+  if [[ $arg =~ ^[\-]*renew$ ]]
+  then
+    readonly DESICCANT_RENEW="true";
+  fi
+  
+  if [[ $arg =~ ^[\-]*sync$ ]]
+  then
+    readonly DESICCANT_SYNC="true";
+  fi
+
+  if [[ $arg =~ ^[\-]*cron$ ]]
+  then
+    readonly DESICCANT_CRON="true";
+  fi
+
+  if [[ $arg =~ ^[\-]*info[s]?$ ]]
+  then
+    readonly DESICCANT_INFOS="true";
+  fi
+
+done
+
+function next_main(){
+  set_run;
+  logger_init;
+  if config_is_valid
+  then
+
+    if is $DESICCANT_RENEW
+    then
+      renew_all;
+    fi
+
+    if is $DESICCANT_SYNC
+    then
+      sync_all;
+    fi
+
+    if is $DESICCANT_INFOS
+    then
+      hosts_infos;
+    fi
+  fi
+  clean_run;
+}
+
+function main(){
+  set_run;
+  logger_init;
+
+  if is $DESICCANT_RENEW
+  then
+    renew_all;
+  fi
+
+  if is $DESICCANT_SYNC
+  then
+    sync_all;
+  fi
+
+  if is $DESICCANT_INFOS
+  then
+    hosts_infos;
+  fi
+  clean_run;
+}
+
+main;

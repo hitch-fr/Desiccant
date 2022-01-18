@@ -6,7 +6,7 @@
     ]
   },
 
-  "srv1": {
+  "remote": {
     "name": "srv1.example.com",
     "sync": true,
     "renew_on_sync": false,
@@ -32,16 +32,5 @@
       "enabled": true
     }
 
-  },
-
-  "srv2": {
-    "disabled": true,
-    "name": "srv2.example.com",
-    "ssh": {
-      "host": "srv2.example.com",
-      "port": 22222,
-      "user": "root"
-    },
-    "certificates": [ "example.com.json",  "example_2.com.json" ]
   }
 }

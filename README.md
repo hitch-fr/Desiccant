@@ -18,19 +18,6 @@ Under the hood, Desiccant uses
 - [Dehydrated](https://github.com/dehydrated-io/dehydrated.git) as an ACME client
 - [Dehydrated-ovh](https://github.com/hitch-fr/dehydrated-ovh.git) as a Dehydrated hook
 
-## Installation
-
-```bash
-git clone --recursive https://github.com/hitch-fr/Desiccant.git
-```
-
-## Update
-
-```bash
-git pull
-git submodule update
-```
-
 ## Features
 
 Any improvement suggestion is welcome, just open an issue or send an email at [support@hitch.fr](mailto:support@hitch.fr)
@@ -40,13 +27,58 @@ Any improvement suggestion is welcome, just open an issue or send an email at [s
 - Configurable email reports
 - Human readable Cron configuration
 
+## Installation
 
-## Hooks
+```bash
+git clone --recursive https://github.com/hitch-fr/Desiccant.git
+cd Desiccant
+cp configs/examples/hosts.json configs/hosts.json
+```
 
-Hooks can be set globally in `configs/certs.json` and can be override on a per certificate basis in `configs/certificates/my_cert.json`.
-To begin with we will only support the [Dehydrated-ovh](https://github.com/hitch-fr/dehydrated-ovh.git) hooks that we wrote but we plan to make it really easy to use any hooks supported by [Dehydrated](https://github.com/dehydrated-io/dehydrated.git) and eventually we will probably insert hooks that dont add any dependencies and that can be configured from Desiccant by environnement variables.
+Then configure your hosts as described in the [configuration](#configuration) section
 
-## Configure
+## Update
+
+```bash
+git pull
+git submodule update --remote
+```
+
+## Configuration
+
+### Hosts configurations
+
+Create or copy the `hosts.json` file from the `configs/examples` directory.
+The only required values are `name` and `certificates`. The `name` should be the hostname (as printed by the hostname command) of the server where you intend to run the renew command for the given `certificates` which is simply an array referencing the configuration files of the certificates in the `configs/certificates` directory.
+
+```json
+{
+  "local": {
+    "name": "localhost_name",
+    "certificates": [
+      "local.json"
+    ]
+  },
+
+  "remote": {
+    "name": "srv1.example.com",
+    "sync": true,
+    "renew_on_sync": false,
+
+    "ssh": {
+      "host": "example.com",
+      "port": 22222,
+      "user": "root"
+    },
+
+    "certificates": [
+      "example.com.json",
+      "another.example.org.json"
+    ]
+
+  }
+}
+```
 
 ### Email report
 ```json
@@ -75,6 +107,11 @@ To begin with we will only support the [Dehydrated-ovh](https://github.com/hitch
   }
 }
 ```
+
+### Hooks
+
+Hooks can be set globally in `configs/certs.json` and can be override on a per certificate basis in `configs/certificates/my_cert.json`.
+To begin with we will only support the [Dehydrated-ovh](https://github.com/hitch-fr/dehydrated-ovh.git) hooks that we wrote but we plan to make it really easy to use any hooks supported by [Dehydrated](https://github.com/dehydrated-io/dehydrated.git) and eventually we will probably insert hooks that dont add any dependencies and that can be configured from Desiccant by environnement variables.
 
 ## Usage
 

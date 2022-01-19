@@ -202,8 +202,8 @@ log_reset_color(){
 # prepend the INFO mension and color it
 # for console_log and files_log calls
 info(){
-  msg="${1^}";
   local msg=$( log_level_filter "$1" );
+  msg="${msg^}";
   local fqdn="";
   if [[ ! -z "${2+x}" ]]
   then

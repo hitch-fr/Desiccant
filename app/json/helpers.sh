@@ -41,7 +41,7 @@ function path(){
     echo "$DESICCANT_PWD";
   else
     local path="${1}";
-    [[ ${path::1} == "/" ]] && echo "$path" || echo "$DESICCANT_PWD/$path";
+    [[ $path =~ ^/|^~/ ]] && echo "$path" || echo "$DESICCANT_PWD/$path";
   fi
 }
 
@@ -102,7 +102,7 @@ function remote_path(){
     echo "$working_dir";
   else
     local path="${2}";
-    [[ ${path::1} == "/" ]] && echo "$path" || echo "$working_dir/$path";
+    [[ $path =~ ^/|^~/ ]] && echo "$path" || echo "$working_dir/$path";
   fi
 }
 

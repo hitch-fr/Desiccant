@@ -109,6 +109,7 @@ function main(){
   then
     hosts_infos;
   fi
+  logger_clean;
   clean_run;
 }
 

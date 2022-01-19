@@ -21,6 +21,60 @@ logger_init(){
   touch $logfile;
 }
 
+logger_clean(){
+  local keep="$( app logger.keep )";
+  local logdir=$( app logger.directory );
+  info "<% level 0 %> $logdir directory cleaning";
+  logdir=$( path $logdir );
+
+  local runs=$( ls -t $logdir );
+  local i=1;
+  for dirname in $runs
+  do
+
+    if [[ ! -d "$logdir/$dirname" ]]
+    then
+      continue;
+    fi
+
+    local run=($( explode "_" $dirname ));
+
+    if [[ -z ${run[1]+x} ]]
+    then
+      continue;
+    fi
+
+    local date="${run[0]}";
+    local time="${run[1]}";
+    time=$( substitute "-" ":" $time );
+    date=($( explode "-" $date ));
+
+    if [[ -z ${date[1]+x} ]]
+    then
+      continue;
+    fi
+
+    date=$( human_date "${date[2]}/${date[1]}/${date[0]} $time" );
+
+    if [[ -z $date ]]
+    then
+      continue;
+    fi
+
+    if [[ $i -eq $keep ]]
+    then
+      info "<% level 1 %> all log file older than $date will be removed";
+    fi
+
+    if [[ $i -gt $keep ]]
+    then
+      info "<% level 2 %> removing logs of the $date";
+      rm -rf "$logdir/$dirname";
+    fi
+    ((++i))
+  done
+}
+
 # remove any log level tag found at the beginning
 # of a message and echo this message out if its
 # log level is lower than the app log config

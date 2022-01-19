@@ -1,3 +1,4 @@
+
 renew(){
 
   local server="${1}" fqdn_config="${2}";
@@ -6,9 +7,6 @@ renew(){
   
   logger_init $fqdn;
   log_header "FQDN : $fqdn";
-
-  info "Creating openssl files" "$fqdn";
-  openssl_init $fqdn_config || return 1;
 
   info "<% level 1 %> Regenerating the dehydrated domains text file" "$fqdn";
   dehydrated_domain_file $fqdn_config || return 1;
@@ -20,14 +18,6 @@ renew(){
   outputs=$( path $outputs );
   local output="$outputs/$fqdn";
   fullchain=$( path "$output/fullchain.pem" );
-
-  if [[ -L "${fullchain}" ]] && [[ -e "${fullchain}" ]]
-  then
-    info "The fullchain.pem file exists, skipping the account creation" "$fqdn";
-  else
-    info "<% level 1 %> Creating The CA account" "$fqdn";
-    dehydrated_account $fqdn_config $server || return 1;
-  fi
 
   local renewal_rule=$( domain renewal_rule $fqdn_config );
   local rule_in_secondes=$( domain renewal_rules.$renewal_rule );

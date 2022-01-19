@@ -1,16 +1,19 @@
 {
-  "dehydrated":{
-    "ca": "letsencrypt",
-    "challenge": "dns-01",
-    "config": "configs/dehydrated/default.conf",
-    "domains_file": "dehydrated.txt",
-    "hook": "libs/hooks/dehydrated-ovh/hook.sh"
-  },
+  "registrar":"ovh",
 
   "ovh":{
     "template": "ovh-credentials.template",
     "output": "ovh-credentials",
-    "endpoint": "ovh-eu"
+    "endpoint": "ovh-eu",
+    "credentials": "app/hooks/generate_ovh_credentials",
+    "hooks": "libs/hooks/dehydrated-ovh/hook.sh"
+  },
+
+  "dehydrated":{
+    "ca": "letsencrypt",
+    "challenge": "dns-01",
+    "config": "configs/dehydrated/default.conf",
+    "domains_file": "dehydrated.txt"
   },
 
   "renewal_rule": "thirty_days_before_expiry",

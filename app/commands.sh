@@ -9,7 +9,7 @@ renew(){
   log_header "FQDN : $fqdn";
 
   dehydrated_domain_file $fqdn_config || return 1;
-  generate_ovh_credentials $fqdn_config || return 1;
+  hooks_credentials $fqdn_config || return 1;
 
   local outputs=$( outputs $fqdn_config );
   outputs=$( path $outputs );

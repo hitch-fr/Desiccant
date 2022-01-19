@@ -36,53 +36,34 @@ dehydrated_domain_file(){
   return 0;
 }
 
-generate_ovh_credentials(){
+hooks_credentials(){
   local fqdn_config="${1}";
+  local registrar=$( domain registrar $fqdn_config );
+  local generate_credentials=$( domain $registrar.credentials $fqdn_config );
   
-  local fqdn=$( domain fqdn $fqdn_config );
-  info "Regenerating OVH credentials file" "$fqdn";
-
-  local credentials_filename=$( domain ovh.output $fqdn_config );
-
-  local outputs=$( outputs $fqdn_config );
-  outputs=$( path $outputs );
-  
-  local output="$outputs/$fqdn";
-  
-  local credentials="$output/$credentials_filename";
-
-  export OVH_ENDPOINT=$( domain ovh.endpoint $fqdn_config );
-  export OVH_KEY=$( domain ovh.key $fqdn_config );
-  export OVH_SECRET=$( domain ovh.secret $fqdn_config );
-  export OVH_CONSUMER_KEY=$( domain ovh.consumer_key $fqdn_config );
-
-  mkdir -p "$output";
-
-  local templates=$( app templates );
-  local template=$( domain ovh.template $fqdn_config );
-  template=$( path "$templates/$template" );
-
-  local template_engine=$( app template_engine );
-  template_engine=$( path $template_engine );
-
-  source <($template_engine $template) > "$credentials";
-  if [[ $? != 0 ]]
+  if is_null $generate_credentials
   then
-    error "During OVH credentials file generation";
-    return 1;
+    info "<% level 1 %> no credential generation script defined for the $registrar registrar";
+    return 0;
   fi
-  
-  info "<% level 2 %>  OVH credentials file generated" "$fqdn";
 
-  chmod 600 "$credentials";
-  if [[ $? != 0 ]]
+  generate_credentials=$( path "$generate_credentials" );
+
+  if ! is_file $generate_credentials
   then
-    error "Making OVH credentials file readable only by the owner";
+    error "credential generation script for $registrar not found";
+    info "<% level 1 %> $generate_credentials no such file";
     return 1;
   fi
 
-  info "<% level 2 %> OVH credentials file is now only readable by the owner" "$fqdn";
-  return 0;
+  if ! is_executable $generate_credentials
+  then
+    error "the credential generation script for $registrar is not executable";
+    info "<% level 1 %> $generate_credentials is not executable";
+    return 1;
+  fi
+
+  $generate_credentials $fqdn_config;
 }
 
 dehydrated_renew(){
@@ -102,10 +83,11 @@ dehydrated_renew(){
 
   local ca=$( domain dehydrated.ca $fqdn_config );
 
-  local hook=$( domain dehydrated.hook $fqdn_config );
+  local registrar=$( domain registrar $fqdn_config );
+  local hook=$( domain $registrar.hooks $fqdn_config );
   hook=$( path "$hook" );
 
-  local credentials=$( domain ovh.output $fqdn_config );
+  local credentials=$( domain $registrar.output $fqdn_config );
   credentials="$output/$credentials";
 
   local dehydrated=$( app dehydrated );

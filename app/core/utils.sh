@@ -34,6 +34,18 @@ function is_file() {
   fi
 }
 
+# return zero if the given variable ${1}
+# is the path of an executable file on
+# the file system, else return 1
+function is_executable() {
+  if [[ -x "${1}" ]]
+  then
+    return 0;
+  else
+    return 1;
+  fi
+}
+
 # return any given string ${1}
 # stripped of its leading &
 # trailing whitespaces

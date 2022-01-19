@@ -4,7 +4,22 @@
 # to Desiccant the ability to customize private keys
 
 # As a reminder this file contain the dehydrated functions
-# and the renew command that was used with those functions 
+# and the renew command that was used with those functions
+
+# The default configuration in the certs.json file was as follow
+#  "openssl":{
+#    "config": "openssl.cnf",
+#    "private_key": "private.pem",
+#    "request": "request.der",
+#    "template": "openssl.cnf.template",
+#    "email": "admin@desiccant.fr",
+#    "organisation": "Desiccant",
+#    "unit_name": "Desiccant WEB",
+#    "country_code": "FR",
+#    "state": "France",
+#    "city": "Paris",
+#    "netscape_comment": "Desiccant Generated Certificate" 
+#  },
 openssl_subjectaltname(){
   local fqdn_config="${1}";
 

@@ -13,20 +13,6 @@
     "endpoint": "ovh-eu"
   },
 
-  "openssl":{
-    "config": "openssl.cnf",
-    "private_key": "private.pem",
-    "request": "request.der",
-    "template": "openssl.cnf.template",
-    "email": "admin@desiccant.fr",
-    "organisation": "Desiccant",
-    "unit_name": "Desiccant WEB",
-    "country_code": "FR",
-    "state": "France",
-    "city": "Paris",
-    "netscape_comment": "Desiccant Generated Certificate" 
-  },
-
   "renewal_rule": "thirty_days_before_expiry",
   "renewal_rules":{
     "on_each_run": 315576000,

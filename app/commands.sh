@@ -8,10 +8,7 @@ renew(){
   logger_init $fqdn;
   log_header "FQDN : $fqdn";
 
-  info "<% level 1 %> Regenerating the dehydrated domains text file" "$fqdn";
   dehydrated_domain_file $fqdn_config || return 1;
-  
-  info "<% level 1 %> Regenerating OVH credentials file" "$fqdn";
   generate_ovh_credentials $fqdn_config || return 1;
 
   local outputs=$( outputs $fqdn_config );

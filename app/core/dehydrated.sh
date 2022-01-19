@@ -2,6 +2,9 @@ dehydrated_domain_file(){
   local fqdn_config="${1}";
 
   local fqdn=$( domain fqdn $fqdn_config );
+
+  info "creating the Dehydrated domain text file" "$fqdn";
+
   local filename=$( domain dehydrated.domains_file $fqdn_config );
   local aliases=$( domain aliases $fqdn_config );
   is_null $aliases && aliases="$fqdn";
@@ -37,6 +40,7 @@ generate_ovh_credentials(){
   local fqdn_config="${1}";
   
   local fqdn=$( domain fqdn $fqdn_config );
+  info "Regenerating OVH credentials file" "$fqdn";
 
   local credentials_filename=$( domain ovh.output $fqdn_config );
 

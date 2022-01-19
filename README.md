@@ -92,9 +92,26 @@ The only required value is the fully qualified domain name `fqdn`. Your registra
     "example.com",
     "any.subdomain.example.com",
     "*.example.com"
-  ],
+  ]
+}
+```
+
+### Registrars
+
+The registrar can be set globally in `configs/certs.json` and can be override on a per certificate basis in `configs/certificates/my_cert.json`.
+
+The default registrar is OVH, To configure it, you just have to fill in your credentials
+
+> Note that when synchronizing Desiccant with remote servers all configuration files are also synchronized, this may lead to security issues. In a near future Desiccant will probably only sync necessary files.
+
+> You should limit access to your configuration files to only necessary users. A `chmod 600` would probably be a good idea.
+
+```json
+{
+  "fqdn": "example.com",
 
   "ovh":{
+    "endpoint": "ovh-eu",
     "key": "<MY_OVH_KEY>",
     "secret": "<MY_OVH_SECRET_KEY>",
     "consumer_key": "<MY_OVH_CONSUMER_KEY>"
@@ -102,10 +119,17 @@ The only required value is the fully qualified domain name `fqdn`. Your registra
 }
 ```
 
-### Hooks
+Under the hood Desiccant use the [Dehydrated-ovh](https://github.com/hitch-fr/dehydrated-ovh.git) Dehydrated hooks script to handle the DNS Zone management so you can use any hooks you would use with Dehydrated. 
 
-Hooks can be set globally in `configs/certs.json` and can be override on a per certificate basis in `configs/certificates/my_cert.json`.
-To begin with we will only support the [Dehydrated-ovh](https://github.com/hitch-fr/dehydrated-ovh.git) hooks that we wrote but we plan to make it really easy to use any hooks supported by [Dehydrated](https://github.com/dehydrated-io/dehydrated.git) and eventually we will probably insert hooks that dont add any dependencies and that can be configured from Desiccant by environnement variables.
+```json
+{
+  "registrar": "whatever",
+
+  "whatever":{
+    "hooks": "/absolute/path/to/the/hooks.sh"
+  }
+}
+```
 
 ### Email reports
 ```json

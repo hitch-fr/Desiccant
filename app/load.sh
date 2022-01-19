@@ -27,7 +27,6 @@ source $APP/cron/common.sh;
 source $APP/send/reports.sh;
 
 # core functions
-source $APP/core/openssl.sh;
 source $APP/core/dehydrated.sh;
 # remote functions
 source $APP/core/remote.sh;

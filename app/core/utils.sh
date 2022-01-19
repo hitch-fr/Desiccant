@@ -74,6 +74,10 @@ function now(){
   LC_ALL=en_UK.utf8 date '+on %A, %B %d, %Y at %H:%M';
 }
 
+function human_date(){
+  LC_ALL=en_UK.utf8 date -d "${1}" '+%A, %B %d, %Y at %H:%M';
+}
+
 # return a string that represent
 # the execution year
 function year(){

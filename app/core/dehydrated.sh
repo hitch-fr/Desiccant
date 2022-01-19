@@ -88,12 +88,14 @@ dehydrated_renew(){
   hook=$( path "$hook" );
 
   local credentials=$( domain $registrar.output $fqdn_config );
-  credentials="$output/$credentials";
+  if ! is_null $credentials
+  then
+    credentials="$output/$credentials";
+    export DESICCANT_HOOK_CREDENTIALS="$credentials";
+  fi
 
   local dehydrated=$( app dehydrated );
   dehydrated=$( path "$dehydrated" );
-
-  export OVH_HOOK_CREDENTIALS="$credentials";
 
   local challenge=$( domain dehydrated.challenge $fqdn_config );
 

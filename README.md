@@ -133,6 +133,8 @@ Under the hood Desiccant uses the [Dehydrated-ovh](https://github.com/hitch-fr/d
 }
 ```
 
+> In a sync scenario make sure to fill in the path of the hooks in the remote server
+
 ### Email reports
 ```json
 {

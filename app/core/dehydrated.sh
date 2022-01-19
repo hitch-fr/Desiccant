@@ -81,54 +81,6 @@ generate_ovh_credentials(){
   return 0;
 }
 
-dehydrated_account(){
-  local fqdn_config="${1}";
-
-  local fqdn=$( domain fqdn $fqdn_config );
-  local conf=$( domain dehydrated.config $fqdn_config );
-  conf=$( path $conf );
-
-  local outputs=$( outputs $fqdn_config );
-  outputs=$( path $outputs );
-
-  local output="$outputs/$fqdn";
-
-  local privkey=$( domain openssl.private_key $fqdn_config );
-  privkey="$output/$privkey";
-
-  local domains_txt=$( domain dehydrated.domains_file $fqdn_config );
-  domains_txt="$output/$domains_txt";
-
-  local ca=$( domain dehydrated.ca $fqdn_config );
-
-  local dehydrated=$( app dehydrated );
-  dehydrated=$( path "$dehydrated" );
-
-  local logdir=$( app logger.directory );
-  local logfile=$( path "$logdir/$( run_name )/$fqdn/dehydrated.txt" );
-  local log_to_stdout=$( app logger.dehydrated.stdout );
-  local log_to_file=$( app logger.dehydrated.file );
-
-  # dehydrated already add /fqdn to whatever output we pass with -o
-  redirect_outputs "$logfile" "$log_to_file" "$log_to_stdout" \
-  $dehydrated \
-      --privkey $privkey \
-      --register \
-      --config $conf \
-      --ca $ca \
-      --domains-txt $domains_txt \
-      --accept-terms -o $outputs;
-
-  if [[ $? != 0 ]]
-  then
-    error "Something went wrong during the CA account creation";
-    return 1;
-  fi
-
-  success "CA account successfully created";
-  return 0;
-}
-
 dehydrated_renew(){
   local fqdn_config="${1}" action="${2}";
 
@@ -140,9 +92,6 @@ dehydrated_renew(){
   outputs=$( path $outputs );
 
   local output="$outputs/$fqdn";
-
-  local privkey=$( domain openssl.private_key $fqdn_config );
-  privkey="$output/$privkey";
 
   local domains_txt=$( domain dehydrated.domains_file $fqdn_config );
   domains_txt="$output/$domains_txt";
@@ -170,7 +119,6 @@ dehydrated_renew(){
   # dehydrated already add /fqdn to whatever output we pass with -o
   redirect_outputs "$logfile" "$log_to_file" "$log_to_stdout" \
   $dehydrated \
-      --privkey $privkey \
       --cron \
       --accept-terms \
       --force \

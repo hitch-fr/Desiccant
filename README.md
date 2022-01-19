@@ -119,7 +119,9 @@ The default registrar is OVH, To configure it, you just have to fill in your cre
 }
 ```
 
-Under the hood Desiccant use the [Dehydrated-ovh](https://github.com/hitch-fr/dehydrated-ovh.git) Dehydrated hooks script to handle the DNS Zone management so you can use any hooks you would use with Dehydrated. 
+### Custom registrar
+
+Under the hood Desiccant uses the [Dehydrated-ovh](https://github.com/hitch-fr/dehydrated-ovh.git) Dehydrated hooks script to handle the DNS Zone management so you can use any hooks you would use with Dehydrated. 
 
 ```json
 {

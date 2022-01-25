@@ -41,7 +41,6 @@ Then configure your hosts as described in the [configuration](#configuration) se
 
 ```bash
 git pull
-git submodule update --remote
 ```
 
 ## Configuration

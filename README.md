@@ -39,8 +39,11 @@ Then configure your hosts as described in the [configuration](#configuration) se
 
 ## Update
 
+Just run the following commands from the Desiccant directory
+
 ```bash
 git pull
+git submodule update --remote
 ```
 
 ## Configuration

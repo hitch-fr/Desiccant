@@ -174,7 +174,7 @@ Under the hood Desiccant uses the [Dehydrated-ovh](https://github.com/hitch-fr/d
 
 ### Schedule locally
 ```bash
-./run cron
+sudo ./run cron
 ```
 
 ### Synchronize and schedule remotely

@@ -201,3 +201,32 @@ function hosts_infos(){
   fi
 
 }
+
+function cron(){
+  local servers_conf=$( app hosts );
+  servers_conf=$( path "$servers_conf" );
+
+  if ! is_file $servers_conf
+  then
+    error "the hosts configuration file dont exists";
+    return 1;
+  fi
+
+  local hosts=$( keys $servers_conf );
+
+  for host in $hosts
+  do
+    local disabled=$( server $host.disabled );
+
+    if ! is $disabled
+    then
+      local hostname=$( hostname );
+      local targethost=$( server $host.name );
+
+      if [[ $hostname == $targethost ]]
+      then
+        local_cronfile $host;
+      fi
+    fi
+  done
+}

@@ -15,7 +15,7 @@ unset -v ROOT;
 DESICCANT_SYNC="false";
 DESICCANT_RENEW="false";
 DESICCANT_INFOS="false";
-DESICCANT_CRON="false";
+DESICCANT_LOCAL_CRON="false";
 
 if [[ -z ${1+x} ]]
 then
@@ -47,7 +47,7 @@ do
 
   if [[ $arg =~ ^[\-]*cron$ ]]
   then
-    readonly DESICCANT_CRON="true";
+    readonly DESICCANT_LOCAL_CRON="true";
   fi
 
   if [[ $arg =~ ^[\-]*info[s]?$ ]]
@@ -68,9 +68,9 @@ function next_main(){
       renew_all;
     fi
 
-    if is $DESICCANT_CRON
+    if is $DESICCANT_LOCAL_CRON
     then
-      info "the cron command does not exist yet";
+      cron;
     fi
 
     if is $DESICCANT_SYNC
@@ -95,9 +95,9 @@ function main(){
     renew_all;
   fi
 
-  if is $DESICCANT_CRON
+  if is $DESICCANT_LOCAL_CRON
   then
-    info "the cron command does not exist yet";
+    local_cron;
   fi
 
   if is $DESICCANT_SYNC

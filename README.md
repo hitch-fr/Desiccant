@@ -182,6 +182,18 @@ sudo ./run cron
 ./run sync
 ```
 
+### Add the desiccant command
+
+For convenience, you can add a desiccant function to your `~/.bashrc` file like so
+
+```bash
+desiccant(){
+        ~/path/to/Desiccant/run "$@";
+}
+```
+and then run commands like `desiccant renew`
+
+
 ## Known compatible operating systems and bash versions
 
 - Debian buster 10.11 with GNU bash, version 5.0.3

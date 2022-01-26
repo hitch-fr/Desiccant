@@ -33,6 +33,9 @@ source $APP/core/remote.sh;
 source $APP/cron/remote.sh;
 source $APP/core/sync.sh;
 
+# local functions
+source $APP/cron/local.sh;
+
 # main commands
 source $APP/commands.sh;
 

@@ -29,8 +29,8 @@ remote_renew(){
   if is $renewable
   then
     local working_dir=$( server $server.working_dir );
-    local exec=$( server $server.cron.script );
-    remote_command $server "$working_dir/$exec --renew";
+    local cmd=$( server $server.cron.script );
+    remote_command $server "$working_dir/$cmd";
   fi
 }
 

@@ -6,6 +6,11 @@ common_report(){
 
   local common_reporter=$( app reporters.common );
   local enabled=$( app $common_reporter.enabled );
+
+  if [[ $enabled == "on_renew" ]]
+  then
+    enabled="$DESICCANT_HAS_BEEN_RENEWED"
+  fi
   
   if [[ ! -z ${2+x} ]]
   then

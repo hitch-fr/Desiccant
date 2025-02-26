@@ -43,9 +43,11 @@ renew(){
 
     else
       dehydrated_renew $fqdn_config 'renewed' || return 1;
+      DESICCANT_HAS_BEEN_RENEWED="true";
     fi
   else
     dehydrated_renew $fqdn_config 'created' || return 1;
+    DESICCANT_HAS_BEEN_RENEWED="true";
   fi
 
   return 0;

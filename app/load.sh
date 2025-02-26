@@ -1,6 +1,6 @@
-#!/usr/bin/env bash
 
 # Bash failsafe
+#!/usr/bin/env bash
 set -f # disable globbing
 set -e # exit on script fail
 set -E # ERR trap not fire in certain scenarios with -e only
@@ -17,6 +17,8 @@ export DESICCANT_PWD;
 
 # create and export the JSON Processor executable variable
 export DESICCANT_JQ="$DESICCANT_PWD/libs/jq-linux64";
+
+export DESICCANT_HAS_BEEN_RENEWED="false";
 
 # app utilities
 source $APP/core/utils.sh;
